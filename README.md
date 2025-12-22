@@ -99,7 +99,7 @@ CMS Platforms & Tools
     <td width="50%">
       <h3>Project 5: WooCommerce Video Gallery Enhancer Pro Plugin</h3>
       <p>Add video to WooCommerce product gallery with position control with Custom thumbnail option.</p>
-      <a href="https://github.com/AnkushShingari/WooCommerce-Video-Gallery-Enhancer">View on GitHub</a>
+      <a href="https://github.com/AnkushShingari/WooCommerce-Video-Gallery-Enhancer-pro">View on GitHub</a>
     </td>
   </tr>
   <tr>
