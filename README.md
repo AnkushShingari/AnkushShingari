@@ -60,9 +60,9 @@ CMS Platforms & Tools
 ### 📊 My GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=AnkushK2022&show_icons=true&theme=radical&hide_border=true&include_all_commits=true" alt="AnkushK2022's GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=AnkushShingari&show_icons=true&theme=radical&hide_border=true&include_all_commits=true" alt="AnkushShingari's GitHub Stats" />
   <br/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnkushK2022&layout=compact&theme=radical&hide_border=true" alt="AnkushK2022's Top Languages" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnkushShingari&layout=compact&theme=radical&hide_border=true" alt="AnkushShingari's Top Languages" />
 </p>
 
 ---
@@ -74,7 +74,7 @@ CMS Platforms & Tools
     <td width="100%" colspan="2">
       <h3>Project 1: Portfolio Website</h3>
       <p>My new fully responsive, animated personal portfolio built with Tailwind CSS and JavaScript. (This is the one you're building!)</p>
-      <a href="https://github.com/AnkushK2022/AnkushK2022.github.io">View on GitHub</a> | <a href="https://AnkushK2022.github.io">View Live</a>
+      <a href="https://github.com/AnkushShingari/AnkushShingari.github.io">View on GitHub</a> | <a href="https://AnkushShingari.github.io">View Live</a>
     </td>
   </tr>
   <tr>
@@ -82,31 +82,31 @@ CMS Platforms & Tools
       <h3>Project 2: MatchMind</h3>
 	  <em>Colour Match Challenge</em>
       <p>A game of speed, focus, and visual acuity. Enjoy the challenge!</p>
-      <a href="https://github.com/ankushshingari/MatchMind">View on GitHub</a> | <a href="https://ankushshingari.github.io/MatchMind/">View Live</a>
+      <a href="https://github.com/AnkushShingari/MatchMind.git">View on GitHub</a> | <a href="https://ankushshingari.github.io/MatchMind/">View Live</a>
     </td>
 	<td width="50%">
       <h3>Project 3: Animated SVG Text Generator</h3>
       <p>A single-page application for customizing and generating animated SVG text effects.</p>
-      <a href="https://github.com/ankushshingari/Animated-SVG-Text-Generator">View on GitHub</a> | <a href="https://ankushshingari.github.io/Animated-SVG-Text-Generator/">View Live</a>
+      <a href="https://github.com/AnkushShingari/Animated-SVG-Text-Generator">View on GitHub</a> | <a href="https://ankushshingari.github.io/Animated-SVG-Text-Generator/">View Live</a>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <h3>Project 4: WooCommerce Video Gallery Enhancer Plugin</h3>
       <p>Add video to WooCommerce product gallery with position control</p>
-      <a href="https://github.com/AnkushK2022/WooCommerce-Video-Gallery-Enhancer">View on GitHub</a>
+      <a href="https://github.com/AnkushShingari/WooCommerce-Video-Gallery-Enhancer">View on GitHub</a>
     </td>
     <td width="50%">
       <h3>Project 5: WooCommerce Video Gallery Enhancer Pro Plugin</h3>
       <p>Add video to WooCommerce product gallery with position control with Custom thumbnail option.</p>
-      <a href="https://github.com/AnkushK2022/WooCommerce-Video-Gallery-Enhancer">View on GitHub</a>
+      <a href="https://github.com/AnkushShingari/WooCommerce-Video-Gallery-Enhancer">View on GitHub</a>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <h3>Project 6: Book Upload Manager Plugin</h3>
       <p>WordPress plugin to allow users to upload there books to the website and allow admin to review them. Approval creates a products in the woo-commerce automatically in one click.</p>
-      <a href="https://github.com/AnkushK2022/BookUploadManager">View on GitHub</a>
+      <a href="https://github.com/AnkushShingari/BookUploadManager">View on GitHub</a>
     </td>
     <td width="50%">
     </td>
