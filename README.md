@@ -82,12 +82,12 @@ CMS Platforms & Tools
       <h3>Project 2: MatchMind</h3>
 	  <em>Colour Match Challenge</em>
       <p>A game of speed, focus, and visual acuity. Enjoy the challenge!</p>
-      <a href="https://github.com/AnkushK2022/MatchMind">View on GitHub</a> | <a href="https://ankushk2022.github.io/MatchMind/">View Live</a>
+      <a href="https://github.com/ankushshingari/MatchMind">View on GitHub</a> | <a href="https://ankushshingari.github.io/MatchMind/">View Live</a>
     </td>
 	<td width="50%">
       <h3>Project 3: Animated SVG Text Generator</h3>
       <p>A single-page application for customizing and generating animated SVG text effects.</p>
-      <a href="https://github.com/AnkushK2022/Animated-SVG-Text-Generator">View on GitHub</a> | <a href="https://ankushk2022.github.io/Animated-SVG-Text-Generator/">View Live</a>
+      <a href="https://github.com/ankushshingari/Animated-SVG-Text-Generator">View on GitHub</a> | <a href="https://ankushshingari.github.io/Animated-SVG-Text-Generator/">View Live</a>
     </td>
   </tr>
   <tr>
