@@ -60,9 +60,9 @@ CMS Platforms & Tools
 ### 📊 My GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=AnkushShingari&show_icons=true&theme=radical&hide_border=true&include_all_commits=true" alt="AnkushShingari's GitHub Stats" />
+  <img src="https://stats-github-readme.vercel.app/api?username=AnkushShingari&show_icons=true&theme=radical&hide_border=true" alt="AnkushShingari's GitHub Stats" />
   <br/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnkushShingari&layout=compact&theme=radical&hide_border=true" alt="AnkushShingari's Top Languages" />
+  <img src="https://stats-github-readme.vercel.app/api/top-langs/?username=AnkushShingari&layout=compact&theme=radical&hide_border=true" alt="AnkushShingari's Top Languages" />
 </p>
 
 ---
