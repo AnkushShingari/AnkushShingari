@@ -15,9 +15,9 @@
     <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Me" />
   </a>
   
-  <!--a href="[YOUR_LINKEDIN_URL_HERE]">
+  <a href="https://www.linkedin.com/in/ankush-kumar-8a43773b9">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="My LinkedIn" />
-  </a-->
+  </a>
   
   <!--a href="[YOUR_PORTFOLIO_WEBSITE_URL]">
     <img src="https://img.shields.io/badge/Portfolio-WebApp-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="My Portfolio" />
@@ -109,6 +109,9 @@ CMS Platforms & Tools
       <a href="https://github.com/AnkushShingari/BookUploadManager">View on GitHub</a>
     </td>
     <td width="50%">
+      <h3>Project 6: Fitness Journey Tracker</h3>
+      <p>Interactive fitness journey tracker with fully dynamic form system, advanced session management, and comprehensive admin dashboard.</p>
+      <a href="https://github.com/AnkushShingari/Fitness-Journey-Tracker">View on GitHub</a>
     </td>
   </tr>
 </table>
