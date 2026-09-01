@@ -17,7 +17,7 @@ const SiteHeader = () => {
 
     return (
         /* Added sticky positioning, top offset, high z-index, and backdrop blur */
-        <header className="sticky top-0 z-50 bg-[#0b0f17] backdrop-blur-md text-white border-b border-gray-800 px-6 py-4 md:px-12 font-sans transition-all">
+        <header className="sticky top-0 z-50 bg-[#0b0f17] backdrop-blur-md text-white border-b border-gray-800 px-3 py-4 md:px-12 font-sans transition-all">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 
                 {/* Brand / Logo */}

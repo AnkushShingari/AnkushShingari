@@ -11,7 +11,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="bg-[#0b0f17] text-white py-16 px-6 md:px-12  border-b border-gray-800 font-sans">
+    <section id="skills" className="bg-[#0b0f17] text-white py-8 px-4 md:py-16 md:px-12 border-b border-gray-800 font-sans">
       <div className="max-w-7xl mx-auto space-y-10">
         
         {/* Section Header */}
