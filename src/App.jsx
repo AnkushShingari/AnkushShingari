@@ -1,8 +1,13 @@
 import React from 'react'
+import SiteHeader from './components/SiteHeader'
+import HeroSection from './components/HeroSection'
 
 const App = () => {
   return (
-    <div>My name is Ankush Kumar</div>
+    <>
+        <SiteHeader/>
+        <HeroSection/>
+    </>
   )
 }
 
