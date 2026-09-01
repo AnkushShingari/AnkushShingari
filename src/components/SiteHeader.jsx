@@ -9,8 +9,8 @@ const SiteHeader = () => {
     ];
 
     return (
-        <div className="bg-[#0b0f17] text-white flex items-center justify-center relative font-sans">
-            <nav className="max-w-7xl w-full bg-[#0d1117] text-white py-4 px-8 flex items-center justify-between border-b border-gray-800">
+        <div className="bg-[#0b0f17] text-white flex items-center justify-center relative border-b border-gray-800 font-sans">
+            <nav className="max-w-7xl w-full bg-[#0d1117] text-white py-4 px-8 flex items-center justify-between">
                 {/* Brand / Logo */}
                 <a href="#" className="font-mono text-xl font-bold tracking-wide">
                     <span className="text-[#38bdf8]">{'{ '}</span>
