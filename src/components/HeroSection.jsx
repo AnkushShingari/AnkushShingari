@@ -51,7 +51,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="bg-[#0b0f17] text-white min-h-[90vh] flex items-center justify-center p-6 md:p-12 relative font-sans">
+    <div className="bg-[#0b0f17] text-white min-h-[90vh] flex items-center justify-center p-6 md:p-12 relative border-b border-gray-800 font-sans">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         {/* Left Column: Hero Text */}
