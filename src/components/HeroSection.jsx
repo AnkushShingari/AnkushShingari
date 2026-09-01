@@ -6,8 +6,7 @@ import {
   FaLocationDot, 
   FaXmark, 
   FaRegCopy, 
-  FaCheck,
-  FaArrowRight
+  FaCheck
 } from 'react-icons/fa6';
 import { IoCodeSlashOutline } from 'react-icons/io5';
 
@@ -36,7 +35,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="bg-[#0b0f17] text-white min-h-screen flex items-center justify-center p-6 md:p-12 relative font-sans">
+    <div className="bg-[#0b0f17] text-white min-h-[90vh] flex items-center justify-center p-6 md:p-12 relative font-sans">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
         {/* Left Column: Hero Text */}
@@ -99,7 +98,7 @@ export default function HeroSection() {
         {/* Right Column: Code Window Card */}
         <div 
           onClick={() => setIsOpen(true)}
-          className="bg-[#11161d] border border-gray-800 rounded-xl overflow-hidden shadow-2xl hover:border-gray-700 transition cursor-pointer relative group"
+          className="bg-[#11161d] border border-gray-800 rounded-xl overflow-hidden shadow-2xl hover:border-gray-700 transition cursor-pointer relative group flex flex-col justify-between"
         >
           {/* Card Window Header */}
           <div className="bg-[#161b22] px-4 py-3 flex items-center justify-between border-b border-gray-800">
@@ -115,8 +114,8 @@ export default function HeroSection() {
           </div>
 
           {/* Card Body */}
-          <div className="p-6 font-mono text-xs md:text-sm leading-relaxed relative">
-            <div className="space-y-1 text-gray-300">
+          <div className="p-6 font-mono text-xs md:text-sm leading-relaxed relative min-h-[260px] flex flex-col justify-between">
+            <div className="space-y-1 text-gray-300 overflow-x-auto pb-12 sm:pb-0">
               <p><span className="text-gray-500 mr-4">1</span><span className="text-[#38bdf8]">const</span> <span className="text-white">developer</span> = &#123;</p>
               <p><span className="text-gray-500 mr-4">2</span>  <span className="text-gray-400">name:</span> <span className="text-[#a5d6ff]">"{developerData.name}"</span>,</p>
               <p><span className="text-gray-500 mr-4">3</span>  <span className="text-gray-400">role:</span> <span className="text-[#a5d6ff]">"{developerData.title}"</span>,</p>
@@ -126,10 +125,10 @@ export default function HeroSection() {
             </div>
 
             {/* Avatar Circle Graphic */}
-            <div className="absolute bottom-4 right-4 w-28 h-28 border border-[#2dd4bf]/40 rounded-full flex items-center justify-center p-2 bg-[#0b0f17]/50 backdrop-blur-sm">
+            <div className="absolute bottom-4 right-4 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 border border-[#2dd4bf]/40 rounded-full flex items-center justify-center p-2 bg-[#0b0f17]/80 backdrop-blur-sm">
               <div className="w-full h-full rounded-full border border-[#2dd4bf] flex items-center justify-center text-[#2dd4bf]">
-                <svg className="w-16 h-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                  <path d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z" />
+                <svg className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                  <path d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 3z" />
                   <path d="M6 19c0-3 3-4 6-4s6 1 6 4" />
                 </svg>
               </div>
