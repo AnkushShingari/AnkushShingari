@@ -1,0 +1,140 @@
+{
+  "personalInfo": {
+    "name": "Ankush Kumar",
+    "title": "Software Developer",
+    "summary": "Software Developer with hands-on experience in PHP, WordPress development, custom plugin development, frontend implementation, and API integration. Experienced in working on live client projects and building responsive, functional web solutions. Currently expanding expertise in React JS development to strengthen full-stack capabilities and deliver scalable web applications.",
+    "email": "ankush.kumar1026@gmail.com",
+    "phone": "+91 8930091095",
+    "location": "Yamunanagar, India",
+    "github": "AnkushShingari"
+  },
+  "workExperience": [
+    {
+      "role": "Front End Developer",
+      "company": "Tech Arch Softwares Pvt. Ltd.",
+      "location": "Panchkula, India",
+      "startDate": "Jan, 2024",
+      "endDate": "Present",
+      "achievementsAndTasks": [
+        "Developed and maintained frontend and backend features for multiple live client projects using PHP, WordPress, JavaScript, MySQL, and jQuery.",
+        "Built custom WordPress plugins based on client-specific business requirements.",
+        "Contributed to internal company product development and feature enhancement.",
+        "Integrated APIs and modified existing codebases according to project requirements.",
+        "Debugged production issues and delivered quick fixes under deadlines.",
+        "Collaborated with team members to implement client revisions and production updates efficiently."
+      ]
+    },
+    {
+      "role": "Software Developer Training",
+      "company": "Decent wave",
+      "location": "Yamuna Nagar, HR, India",
+      "startDate": "Sep, 2023",
+      "endDate": "Jan, 2024",
+      "achievementsAndTasks": [
+        "PHP Development.",
+        "WordPress Development.",
+        "Website Designing."
+      ]
+    },
+    {
+      "role": "SCM Executive",
+      "company": "Rajshree Fabrics",
+      "location": "Kala Amb, HP, India",
+      "startDate": "Aug, 2022",
+      "endDate": "Aug, 2023",
+      "achievementsAndTasks": [
+        "Managed inventory records and supply chain coordination.",
+        "Analyzed shipping workflows to identify operational delays.",
+        "Supported process improvements and team coordination."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science (BSc) in Computer Science",
+      "institution": "Maharaja Agrasen College",
+      "location": "Jagadhari, YNR, HR, India",
+      "startDate": "Apr, 2017",
+      "endDate": "Aug, 2021",
+      "courses": [
+        "Computer Science",
+        "Mathematics",
+        "Physics"
+      ]
+    }
+  ],
+  "technicalSkills": {
+    "frontend": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "jQuery",
+      "Bootstrap",
+      "Tailwind CSS",
+      "React JS"
+    ],
+    "backend": [
+      "PHP",
+      "MySQL"
+    ],
+    "cms": [
+      "WordPress",
+      "Shopify",
+      "Webflow",
+      "GHL"
+    ],
+    "tools": [
+      "Postman",
+      "VS Code",
+      "GitHub"
+    ],
+    "other": [
+      "API Integration",
+      "Plugin Development",
+      "Custom Coding",
+      "CRM Automations"
+    ]
+  },
+  "projects": [
+    {
+      "title": "MatchMind - Colour Match Challenge",
+      "date": "Aug, 2021",
+      "keyFeatures": [
+        "Browser-based game built using HTML, Tailwind CSS, and JavaScript.",
+        "Focused on reaction speed and color recognition logic.",
+        "Implemented score tracking and responsive UI."
+      ],
+      "githubRepo": "https://github.com/AnkushShingari/MatchMind",
+      "liveDemo": "https://ankushshingari.github.io/MatchMind/"
+    },
+    {
+      "title": "Animated-SVG-Text-Generator",
+      "date": "Dec, 2024",
+      "keyFeatures": [
+        "Developed single-page web app for generating animated SVG text effects.",
+        "Built customization controls for text styling and animation export.",
+        "Implemented using HTML, CSS, and JavaScript."
+      ],
+      "githubRepo": "https://github.com/AnkushShingari/Animated-SVG-Text-Generator",
+      "liveDemo": "https://ankushshingari.github.io/Animated-SVG-Text-Generator/"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Full Professional Proficiency"
+    },
+    {
+      "language": "Hindi",
+      "proficiency": "Native or Bilingual Proficiency"
+    },
+    {
+      "language": "Punjabi",
+      "proficiency": "Native or Bilingual Proficiency"
+    }
+  ],
+  "interests": [
+    "Coding",
+    "Travelling"
+  ]
+}
