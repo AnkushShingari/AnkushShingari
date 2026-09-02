@@ -53,14 +53,25 @@
   "education": [
     {
       "degree": "Bachelor of Science (BSc) in Computer Science",
-      "institution": "Maharaja Agrasen College",
-      "location": "Jagadhari, YNR, HR, India",
+      "institution": "Kurukshetra University",
+      "location": "Kurukshetra, HR, India",
       "startDate": "Apr, 2017",
       "endDate": "Aug, 2021",
       "courses": [
         "Computer Science",
         "Mathematics",
         "Physics"
+      ]
+    },{
+      "degree": "Senior Secondary",
+      "institution": "Central Board of Secondary Education",
+      "location": "India",
+      "startDate": "Apr, 2016",
+      "endDate": "Mar, 2017",
+      "courses": [
+        "Physics",
+        "Chemistry",
+        "Maths"
       ]
     }
   ],

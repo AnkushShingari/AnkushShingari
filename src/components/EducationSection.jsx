@@ -54,9 +54,6 @@ export default function EducationSection() {
                 <p className="text-[#2dd4bf] text-xs sm:text-sm font-medium">
                   {item.startDate} – {item.endDate}
                 </p>
-                <p className="text-gray-500 text-xs">
-                  Completed Degree
-                </p>
               </div>
             </div>
           ))}
