@@ -4,11 +4,13 @@ import { FaBars, FaXmark, FaArrowRight } from 'react-icons/fa6';
 const SiteHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // Added 'target', 'rel', and optional 'download' properties to menu items
     const navLinks = [
         { name: 'Skills', href: '#skills' },
         { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
         { name: 'Education', href: '#education' },
+        { name: 'Download Resume', href: '/pdf/AnkushKumarResume.pdf', target: '_blank', rel: 'noopener noreferrer', download: true }
     ];
 
     const toggleMenu = () => {
@@ -16,7 +18,6 @@ const SiteHeader = () => {
     };
 
     return (
-        /* Added sticky positioning, top offset, high z-index, and backdrop blur */
         <header className="sticky top-0 z-50 bg-[#0b0f17] backdrop-blur-md text-white border-b border-gray-800 px-3 py-4 md:px-12 font-sans transition-all">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 
@@ -33,6 +34,9 @@ const SiteHeader = () => {
                         <a
                             key={link.name}
                             href={link.href}
+                            target={link.target || '_self'}
+                            rel={link.rel || undefined}
+                            download={link.download || undefined}
                             className="hover:text-white transition-colors duration-200"
                         >
                             {link.name}
@@ -69,6 +73,9 @@ const SiteHeader = () => {
                         <a
                             key={link.name}
                             href={link.href}
+                            target={link.target || '_self'}
+                            rel={link.rel || undefined}
+                            download={link.download || undefined}
                             onClick={() => setIsMenuOpen(false)}
                             className="text-gray-300 hover:text-[#2dd4bf] font-medium text-base transition-colors duration-200 px-2 py-1"
                         >
