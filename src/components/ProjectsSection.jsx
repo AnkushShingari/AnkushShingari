@@ -90,36 +90,40 @@ export default function ProjectsSection() {
 
       {/* Iframe Preview Popup Modal */}
       {activeDemoUrl && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 z-50 animate-in fade-in duration-200">
-          <div className="bg-[#11161d] border border-gray-800 rounded-xl w-full max-w-6xl h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-6 z-50 animate-in fade-in duration-200">
+          <div className="bg-[#11161d] border border-gray-800 rounded-xl w-full max-w-6xl h-[90vh] sm:h-[85vh] flex flex-col overflow-hidden shadow-2xl relative">
             
             {/* Modal Header */}
-            <div className="bg-[#161b22] px-4 py-3 flex items-center justify-between border-b border-gray-800">
-              <div className="flex items-center gap-3">
-                <div className="flex gap-2">
+            <div className="bg-[#161b22] px-3 sm:px-4 py-3 flex items-center justify-between border-b border-gray-800 min-w-0">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 mr-2">
+                <div className="hidden sm:flex gap-2 shrink-0">
                   <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
                   <span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
                   <span className="w-3 h-3 rounded-full bg-[#27c93f]"></span>
                 </div>
-                <span className="font-mono text-xs text-gray-400 truncate max-w-xs sm:max-w-md">
+                <span className="font-mono text-xs text-gray-400 truncate max-w-[120px] xs:max-w-[180px] sm:max-w-md">
                   {activeDemoUrl}
                 </span>
               </div>
 
-              <div className="flex items-center gap-2">
+              {/* Actions Header Row */}
+              <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+                {/* External Link Option - Icon always visible, text visible on desktop */}
                 <a
                   href={activeDemoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-gray-400 hover:text-white p-1.5 rounded transition hover:bg-gray-800 text-xs flex items-center gap-1.5 font-mono"
-                  title="Open in new tab"
+                  className="text-gray-400 hover:text-white p-2 sm:p-1.5 rounded transition hover:bg-gray-800 text-xs flex items-center gap-1.5 font-mono"
+                  title="Open External"
                 >
-                  <FaArrowUpRightFromSquare className="text-xs" />
+                  <FaArrowUpRightFromSquare className="text-sm sm:text-xs" />
                   <span className="hidden sm:inline">Open External</span>
                 </a>
+                
+                {/* Close Button - Visible on both Mobile & Desktop */}
                 <button
                   onClick={handleCloseDemo}
-                  className="text-gray-400 hover:text-white p-1.5 rounded transition hover:bg-gray-800"
+                  className="text-gray-400 hover:text-white p-2 sm:p-1.5 rounded transition hover:bg-gray-800"
                   title="Close Preview"
                 >
                   <FaXmark className="text-lg" />
