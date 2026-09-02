@@ -3,6 +3,8 @@ import SiteHeader from './components/SiteHeader'
 import HeroSection from './components/HeroSection'
 import SkillsSection from './components/SkillsSection';
 import ExperienceSection from './components/ExperienceSection';
+import ProjectsSection from './components/ProjectsSection';
+import SiteFooter from './components/SiteFooter';
 
 const App = () => {
   return (
@@ -11,6 +13,8 @@ const App = () => {
         <HeroSection/>
         <SkillsSection/>
         <ExperienceSection/>
+        <ProjectsSection/>
+        <SiteFooter/>
     </>
   )
 }

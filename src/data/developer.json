@@ -6,7 +6,8 @@
     "email": "ankush.kumar1026@gmail.com",
     "phone": "+91 8930091095",
     "location": "Yamunanagar, India",
-    "github": "AnkushShingari"
+    "github": "AnkushShingari",
+    "linkedin": "https://www.linkedin.com/in/ankush-kumar-8a43773b9?utm_source=share_via&utm_content=profile&utm_medium=member_android"
   },
   "workExperience": [
     {
@@ -104,6 +105,7 @@
         "Focused on reaction speed and color recognition logic.",
         "Implemented score tracking and responsive UI."
       ],
+      "techStack": ["HTML", "Tailwind CSS", "JavaScript"],
       "githubRepo": "https://github.com/AnkushShingari/MatchMind",
       "liveDemo": "https://ankushshingari.github.io/MatchMind/"
     },
@@ -115,6 +117,7 @@
         "Built customization controls for text styling and animation export.",
         "Implemented using HTML, CSS, and JavaScript."
       ],
+      "techStack": ["HTML", "CSS", "JavaScript", "SVG"],
       "githubRepo": "https://github.com/AnkushShingari/Animated-SVG-Text-Generator",
       "liveDemo": "https://ankushshingari.github.io/Animated-SVG-Text-Generator/"
     }

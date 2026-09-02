@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   FaEnvelope,
   FaPhone,
@@ -114,7 +114,7 @@ export default function HeroSection() {
           className="bg-[#11161d] border border-gray-800 rounded-xl shadow-2xl hover:border-gray-700 transition cursor-pointer relative group flex flex-col justify-between"
         >
           {/* Card Window Header */}
-          <div className="bg-[#161b22] px-4 py-3 flex items-center justify-between border-b border-gray-800 rounded-t-xl">
+          <div className="bg-[#161b22] px-3 md:px-4 py-3 flex items-center justify-between border-b border-gray-800 rounded-t-xl">
             <div className="flex gap-2">
               <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
               <span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
@@ -127,7 +127,7 @@ export default function HeroSection() {
           </div>
 
           {/* Card Body */}
-          <div className="p-6 font-mono text-xs md:text-sm leading-relaxed relative min-h-[340px] flex flex-col justify-between">
+          <div className="p-3 md:p-6 font-mono text-xs md:text-sm leading-relaxed relative min-h-[320px] flex flex-col justify-between">
             <div className="space-y-1 text-gray-300 overflow-x-auto pb-32 sm:pb-36 md:pb-0 md:pr-40">
               <p><span className="text-gray-500 mr-4">1</span><span className="text-[#38bdf8]">const</span> <span className="text-white">developer</span> = &#123;</p>
               <p><span className="text-gray-500 mr-4">2</span>  <span className="text-gray-400">name:</span> <span className="text-[#a5d6ff]">"{personalInfo?.name}"</span>,</p>

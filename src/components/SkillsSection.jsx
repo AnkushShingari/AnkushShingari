@@ -1,4 +1,3 @@
-import React from 'react';
 import developerData from '../data/developer.json';
 
 export default function SkillsSection() {
@@ -31,7 +30,7 @@ export default function SkillsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {/* Frontend */}
-          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-6 flex flex-col justify-between">
+          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-3 md:p-6 flex flex-col justify-between">
             <h3 className="text-[#2dd4bf] font-mono text-xs uppercase tracking-wider font-semibold mb-4">
               FRONTEND
             </h3>
@@ -39,7 +38,7 @@ export default function SkillsSection() {
               {technicalSkills?.frontend?.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3.5 py-2 rounded-lg font-mono transition-colors"
+                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3 py-2 rounded-lg font-mono transition-colors"
                 >
                   {skill}
                 </span>
@@ -48,7 +47,7 @@ export default function SkillsSection() {
           </div>
 
           {/* Backend */}
-          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-6 flex flex-col justify-between">
+          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-3 md:p-6 flex flex-col justify-between">
             <h3 className="text-[#2dd4bf] font-mono text-xs uppercase tracking-wider font-semibold mb-4">
               BACKEND
             </h3>
@@ -56,7 +55,7 @@ export default function SkillsSection() {
               {technicalSkills?.backend?.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3.5 py-2 rounded-lg font-mono transition-colors"
+                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3 py-2 rounded-lg font-mono transition-colors"
                 >
                   {skill}
                 </span>
@@ -65,7 +64,7 @@ export default function SkillsSection() {
           </div>
 
           {/* CMS */}
-          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-6 flex flex-col justify-between">
+          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-3 md:p-6 flex flex-col justify-between">
             <h3 className="text-[#2dd4bf] font-mono text-xs uppercase tracking-wider font-semibold mb-4">
               CMS
             </h3>
@@ -73,7 +72,7 @@ export default function SkillsSection() {
               {technicalSkills?.cms?.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3.5 py-2 rounded-lg font-mono transition-colors"
+                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3 py-2 rounded-lg font-mono transition-colors"
                 >
                   {skill}
                 </span>
@@ -82,7 +81,7 @@ export default function SkillsSection() {
           </div>
 
           {/* Tools & Other */}
-          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-6 flex flex-col justify-between">
+          <div className="bg-[#11161d] border border-gray-800/80 rounded-xl p-3 md:p-6 flex flex-col justify-between">
             <h3 className="text-[#2dd4bf] font-mono text-xs uppercase tracking-wider font-semibold mb-4">
               TOOLS & OTHER
             </h3>
@@ -90,7 +89,7 @@ export default function SkillsSection() {
               {toolsAndOther.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3.5 py-2 rounded-lg font-mono transition-colors"
+                  className="bg-[#161b22] border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 text-xs md:text-sm px-3 py-2 rounded-lg font-mono transition-colors"
                 >
                   {skill}
                 </span>

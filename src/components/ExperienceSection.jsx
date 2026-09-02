@@ -1,4 +1,3 @@
-import React from 'react';
 import developerData from '../data/developer.json';
 
 export default function ExperienceSection() {
@@ -6,7 +5,7 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="bg-[#0b0f17] text-white py-8 px-4 md:py-16 md:px-12 border-b border-gray-800 font-sans">
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-10">
         
         {/* Section Header */}
         <div className="space-y-2">
@@ -19,7 +18,7 @@ export default function ExperienceSection() {
         </div>
 
         {/* Timeline Container */}
-        <div className="relative space-y-8">
+        <div className="relative space-y-6 md:space-y-8 ">
           {workExperience?.map((exp, index) => (
             <div 
               key={index} 
@@ -44,7 +43,7 @@ export default function ExperienceSection() {
               </div>
 
               {/* Right Column: Experience Card */}
-              <div className="md:col-span-8 bg-[#11161d] border border-gray-800/80 rounded-xl p-6 sm:p-8 space-y-4">
+              <div className="md:col-span-8 bg-[#11161d] border border-gray-800/80 rounded-xl p-3 md:p-6 sm:p-8 space-y-4">
                 <div>
                   <h3 className="text-xl font-bold text-white">
                     {exp.role}
