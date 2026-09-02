@@ -22,7 +22,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="bg-[#0b0f17] text-white py-8 px-4 md:py-16 md:px-12 border-b border-gray-800 font-sans">
+    <section id="projects" className="bg-[#0b0f17] text-white py-8 px-4 md:py-16 md:px-12 scroll-mt-12 md:scroll-mt-6 border-b border-gray-800 font-sans">
       <div className="max-w-7xl mx-auto space-y-10">
         
         {/* Section Header */}
@@ -54,7 +54,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Card Body */}
-              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+              <div className="p-3 md:p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-start justify-between gap-4">
                     <h3 className="text-xl font-bold text-white group-hover:text-[#2dd4bf] transition-colors">
