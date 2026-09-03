@@ -26,7 +26,7 @@
 
 **Languages & Frameworks**
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=html,css,js,jquery,tailwind,bootstrap,php,cpp,c&perline=9" alt="Tech Stack Icons" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,react,jquery,tailwind,bootstrap,php,cpp,c&perline=10" alt="Tech Stack Icons" />
 </p>
 
 **CMS Platforms & Ecosystems**
