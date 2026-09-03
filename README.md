@@ -47,7 +47,7 @@
 
 | Project | Description | Links |
 | :--- | :--- | :--- |
-| **Personal Portfolio** | Fully responsive, animated personal portfolio built with Tailwind CSS and JavaScript. | [GitHub](https://github.com/AnkushShingari/AnkushShingari) • [Live Demo](https://AnkushShingari.github.io) |
+| **Personal Portfolio** | Fully responsive personal portfolio built with React JS and Tailwind CSS. | [GitHub](https://github.com/AnkushShingari/AnkushShingari) • [Live Demo](https://AnkushShingari.github.io) |
 | **MatchMind** | A fast-paced color matching game designed for testing speed, focus, and visual acuity. | [GitHub](https://github.com/AnkushShingari/MatchMind.git) • [Live Demo](https://ankushshingari.github.io/MatchMind/) |
 | **Animated SVG Text Generator** | Single-page app for customizing and generating animated SVG text effects on the fly. | [GitHub](https://github.com/AnkushShingari/Animated-SVG-Text-Generator) • [Live Demo](https://ankushshingari.github.io/Animated-SVG-Text-Generator/) |
 | **Fitness Journey Tracker** | Interactive fitness tracker featuring dynamic forms, session management, and admin controls. | [GitHub](https://github.com/AnkushShingari/Fitness-Journey-Tracker) |
