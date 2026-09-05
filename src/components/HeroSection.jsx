@@ -104,10 +104,6 @@ export default function HeroSection() {
               <FaEnvelope className="text-[#2dd4bf] text-sm" />
               <span>{personalInfo?.email}</span>
             </a>
-            <a href={`tel:${personalInfo?.phone}`} className="flex items-center gap-2 bg-[#161b22] border border-gray-800 hover:border-gray-700 px-3 py-2 rounded-md transition hover:text-white">
-              <FaPhone className="text-[#2dd4bf] text-sm" />
-              <span>{personalInfo?.phone}</span>
-            </a>
             <a href={`https://github.com/${personalInfo?.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#161b22] border border-gray-800 hover:border-gray-700 px-3 py-2 rounded-md transition hover:text-white">
               <FaGithub className="text-[#2dd4bf] text-sm" />
               <span>{personalInfo?.github}</span>
