@@ -27,7 +27,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-[#0b0f12] text-white py-16 px-6 md:px-12 lg:px-20 font-sans min-h-screen flex items-center justify-center">
+    <section className="bg-[#0b0f17] text-white py-8 px-4 md:py-16 md:px-12 font-sans min-h-screen flex items-center justify-center">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         {/* Left Column: Form */}
