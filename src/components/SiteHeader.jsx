@@ -36,7 +36,7 @@ const SiteHeader = () => {
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    targetElement.scrollIntoView();
                     // Update URL hash without forcing a full page re-render
                     window.history.pushState(null, '', link.href);
                 }
