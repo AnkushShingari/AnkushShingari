@@ -4,7 +4,9 @@ import {
   FiPhone,
   FiMapPin,
   FiArrowRight,
-  FiSend
+  FiSend,
+  FiCheckCircle,
+  FiAlertCircle
 } from 'react-icons/fi';
 import { TbBrandGithub } from 'react-icons/tb';
 
@@ -16,14 +18,31 @@ export default function ContactSection() {
     message: ''
   });
 
+  const [status, setStatus] = useState({ loading: false, success: null, error: null });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle submit logic here
-    console.log('Form Submitted:', formData);
+    setStatus({ loading: true, success: null, error: null });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to send message.');
+
+      setStatus({ loading: false, success: data.message || 'Message sent successfully!', error: null });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err) {
+      setStatus({ loading: false, success: null, error: err.message });
+    }
   };
 
   return (
@@ -50,6 +69,23 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            
+            {/* Success Status Banner */}
+            {status.success && (
+              <div className="flex items-center gap-3 bg-[#0d2a21] border border-[#1b5e43] text-[#4ade80] p-4 rounded-lg text-sm font-medium">
+                <FiCheckCircle className="text-xl shrink-0" />
+                <span>{status.success}</span>
+              </div>
+            )}
+
+            {/* Error Status Banner */}
+            {status.error && (
+              <div className="flex items-center gap-3 bg-[#2d1010] border border-[#5e1b1b] text-[#f87171] p-4 rounded-lg text-sm font-medium">
+                <FiAlertCircle className="text-xl shrink-0" />
+                <span>{status.error}</span>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Name Input */}
               <div className="space-y-2">
@@ -119,10 +155,15 @@ export default function ContactSection() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="inline-flex items-center gap-2 bg-[#2dd4bf] hover:bg-[#22b8a5] text-black font-semibold px-6 py-3.5 rounded-lg text-sm transition transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-[#2dd4bf]/10"
+              disabled={status.loading}
+              className="inline-flex items-center gap-2 bg-[#2dd4bf] hover:bg-[#22b8a5] disabled:opacity-50 disabled:cursor-not-allowed text-black font-semibold px-6 py-3.5 rounded-lg text-sm transition transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-[#2dd4bf]/10"
             >
-              <span>Send Message</span>
-              <FiArrowRight className="text-lg" />
+              <span>{status.loading ? 'Sending...' : 'Send Message'}</span>
+              {status.loading ? (
+                <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+              ) : (
+                <FiArrowRight className="text-lg" />
+              )}
             </button>
           </form>
         </div>
