@@ -35,8 +35,12 @@ export default function ContactSection() {
         body: JSON.stringify(formData)
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to send message.');
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
+
+      if (!res.ok) {
+        throw new Error(data.error || `Server error (${res.status})`);
+      }
 
       setStatus({ loading: false, success: data.message || 'Message sent successfully!', error: null });
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -48,7 +52,7 @@ export default function ContactSection() {
   return (
     <section className="bg-[#0b0f17] text-white py-8 px-4 md:py-16 md:px-12 font-sans min-h-screen flex items-center justify-center">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
+
         {/* Left Column: Form */}
         <div className="lg:col-span-7 space-y-8">
           <div>
@@ -69,7 +73,7 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            
+
             {/* Success Status Banner */}
             {status.success && (
               <div className="flex items-center gap-3 bg-[#0d2a21] border border-[#1b5e43] text-[#4ade80] p-4 rounded-lg text-sm font-medium">
@@ -170,9 +174,9 @@ export default function ContactSection() {
 
         {/* Right Column: Info Cards & Terminal Widget */}
         <div className="lg:col-span-5 space-y-4">
-          
+
           {/* Email Info Card */}
-          <a 
+          <a
             href="mailto:ankush.kumar1026@gmail.com"
             className="flex items-center gap-4 bg-[#11171d] border border-gray-800/80 hover:border-gray-700 p-4 rounded-xl transition group"
           >
@@ -186,7 +190,7 @@ export default function ContactSection() {
           </a>
 
           {/* Phone Info Card */}
-          <a 
+          <a
             href="tel:+918930091095"
             className="flex items-center gap-4 bg-[#11171d] border border-gray-800/80 hover:border-gray-700 p-4 rounded-xl transition group"
           >
@@ -211,9 +215,9 @@ export default function ContactSection() {
           </div>
 
           {/* GitHub Profile Card */}
-          <a 
-            href="https://github.com/AnkushShingari" 
-            target="_blank" 
+          <a
+            href="https://github.com/AnkushShingari"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-4 bg-[#11171d] border border-gray-800/80 hover:border-gray-700 p-4 rounded-xl transition group"
           >

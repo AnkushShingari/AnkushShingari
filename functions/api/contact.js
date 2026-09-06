@@ -15,14 +15,11 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Chained bind call directly on prepare
-    await env.ankushshingari_db
-      .prepare(`
-        INSERT INTO contact_submissions (name, email, subject, message, created_at)
-        VALUES (?, ?, ?, ?, DATETIME('now'))
-      `)
-      .bind(name, email, subject, message)
-      .run();
+    // Access the DB binding off env
+    await env.DB.prepare(`
+      INSERT INTO contact_submissions (name, email, subject, message, created_at)
+      VALUES (?, ?, ?, ?, DATETIME('now'))
+    `).bind(name, email, subject, message).run();
 
     return new Response(
       JSON.stringify({ success: true, message: 'Message sent successfully!' }),
