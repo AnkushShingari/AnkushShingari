@@ -1,15 +1,12 @@
 {
-    "name": "ankushshingari",
-    "compatibility_date": "2026-09-03",
-    "assets": {
-        "directory": "./dist",
-        "not_found_handling": "single-page-application"
-    },
-    "d1_databases": [
-        {
-            "binding": "ankushshingari_db",
-            "database_name": "ankushshingari_db",
-            "database_id": "d75efd72-ab2b-4a2f-98c0-77cf0b42e770"
-        }
-    ]
+  "name": "ankushshingari",
+  "compatibility_date": "2026-09-03",
+  "pages_build_output_dir": "./dist",
+  "d1_databases": [
+    {
+      "binding": "ankushshingari_db",
+      "database_name": "ankushshingari_db",
+      "database_id": "d75efd72-ab2b-4a2f-98c0-77cf0b42e770"
+    }
+  ]
 }
