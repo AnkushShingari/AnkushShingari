@@ -15,7 +15,7 @@ import developerData from '../data/developer.json';
 
 const galleryImages = [
   { id: 1, src: "/media/Ankush-Kumar-Avatar.png", title: "Avatar Illustration" },
-  { id: 2, src: "/media/AnkushProfilePhoto.png", title: "Profile Image View" }
+  { id: 2, src: "/media/AnkushProfilePhoto.jpeg", title: "Profile Image View" }
 ];
 
 // Helper Component: Handles individual image load state smoothly
