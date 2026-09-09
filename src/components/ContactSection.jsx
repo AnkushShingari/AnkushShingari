@@ -190,7 +190,7 @@ export default function ContactSection() {
           </a>
 
           {/* Phone Info Card */}
-          <a
+          {/* <a
             href="tel:+918930091095"
             className="flex items-center gap-4 bg-[#11171d] border border-gray-800/80 hover:border-gray-700 p-4 rounded-xl transition group"
           >
@@ -201,7 +201,7 @@ export default function ContactSection() {
               <span className="block text-[11px] font-mono text-gray-400 uppercase tracking-wider">PHONE NUMBER</span>
               <span className="text-sm font-semibold text-white group-hover:text-[#2dd4bf] transition">+91 8930091095</span>
             </div>
-          </a>
+          </a> */}
 
           {/* Location Info Card */}
           <div className="flex items-center gap-4 bg-[#11171d] border border-gray-800/80 p-4 rounded-xl">

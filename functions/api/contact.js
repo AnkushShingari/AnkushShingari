@@ -15,7 +15,7 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Rely on SQLite DEFAULT TIMESTAMP or DATETIME for auto-population
+    // Database Insertion
     await env.ankushshingari_db.prepare(`
       INSERT INTO contact_submissions (name, email, subject, message)
       VALUES (?, ?, ?, ?)
