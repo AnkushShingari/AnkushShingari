@@ -11,6 +11,7 @@ const SiteHeader = () => {
         { name: 'Experience', href: '/#experience', isHash: true },
         { name: 'Projects', href: '/#projects', isHash: true },
         { name: 'Education', href: '/#education', isHash: true },
+        { name: 'PlayZone', href: '/playzone', isHash: false },
         {
             name: 'Download Resume',
             href: '/pdf/AnkushKumarResume.pdf',

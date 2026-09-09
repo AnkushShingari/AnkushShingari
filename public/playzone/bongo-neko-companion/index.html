@@ -1,0 +1,2891 @@
+<html lang="en">
+
+<head>
+    <script
+        data-bard-client-injected="true">(function (firebaseConfig, initialAuthToken, appId) {
+                window.__firebase_config = firebaseConfig;
+                window.__initial_auth_token = initialAuthToken;
+                window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n", "", "3f9b12884972-index.html-511")</script>
+    <script data-bard-client-injected="true">(function () { 'use strict'; window.addEventListener("message", a => { a.data && a.data.type === "SUPPLEMENTAL_DATA_UPDATE" && window.dispatchEvent(new CustomEvent("supplementaldataupdate", { detail: a.data.data })) }); }).call(this);
+    </script>
+    <script data-bard-client-injected="true">(function () {
+            'use strict'; var h = typeof Object.defineProperties == "function" ? Object.defineProperty : function (a, b, c) { if (a == Array.prototype || a == Object.prototype) return a; a[b] = c.value; return a }; function l(a) { a = ["object" == typeof globalThis && globalThis, a, "object" == typeof window && window, "object" == typeof self && self, "object" == typeof global && global]; for (var b = 0; b < a.length; ++b) { var c = a[b]; if (c && c.Math == Math) return c } throw Error("Cannot find global object"); } var n = l(this);
+            function p(a, b) { if (b) a: { var c = n; a = a.split("."); for (var d = 0; d < a.length - 1; d++) { var e = a[d]; if (!(e in c)) break a; c = c[e] } a = a[a.length - 1]; d = c[a]; b = b(d); b != d && b != null && h(c, a, { configurable: !0, writable: !0, value: b }) } } function r(a) { function b(d) { return a.next(d) } function c(d) { return a.throw(d) } return new Promise(function (d, e) { function f(g) { g.done ? d(g.value) : Promise.resolve(g.value).then(b, c).then(f, e) } f(a.next()) }) } function t(a) { return r(a()) }
+            p("Object.values", function (a) { return a ? a : function (b) { var c = [], d; for (d in b) Object.prototype.hasOwnProperty.call(b, d) && c.push(b[d]); return c } }); p("Array.prototype.includes", function (a) { return a ? a : function (b, c) { var d = this; d instanceof String && (d = String(d)); var e = d.length; c = c || 0; for (c < 0 && (c = Math.max(c + e, 0)); c < e; c++) { var f = d[c]; if (f === b || Object.is(f, b)) return !0 } return !1 } });/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+            function u(a, b) { var c = a.style; b.backgroundColor && (c.backgroundColor = b.backgroundColor); b.width && (c.width = `${b.width}px`); b.height && (c.height = `${b.height}px`); var d = b.style; d != null && Object.keys(d).forEach(e => { c[e] = d[e] }) }; var v = (() => { var a = 0; return () => { a += 1; return `u${`0000${(Math.random() * 1679616 << 0).toString(36)}`.slice(-4)}${a}` } })(); function w(a) { var b = []; for (let c = 0, d = a.length; c < d; c++)b.push(a[c]); return b } let x = null; function y(a = {}) { return x ? x : a.u ? x = a.u : x = w(window.getComputedStyle(document.documentElement)) } function z(a, b) { return (a = (a.ownerDocument.defaultView || window).getComputedStyle(a).getPropertyValue(b)) ? parseFloat(a.replace("px", "")) : 0 }
+            function A(a, b = {}) { var c; if (!(c = b.width)) { c = z(a, "border-left-width"); var d = z(a, "border-right-width"); c = a.clientWidth + c + d } (b = b.height) || (b = z(a, "border-top-width"), d = z(a, "border-bottom-width"), b = a.clientHeight + b + d); return { width: c, height: b } } function B(a) { return new Promise((b, c) => { var d = new Image; d.onload = () => { d.decode().then(() => { requestAnimationFrame(() => b(d)) }) }; d.onerror = c; d.crossOrigin = "anonymous"; d.decoding = "async"; d.src = a }) }
+            function C(a) { return t(function* () { return Promise.resolve().then(() => (new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b => `data:image/svg+xml;charset=utf-8,${b}`) }) }
+            function D(a, b, c) { return t(function* () { var d = document.createElementNS("http://www.w3.org/2000/svg", "svg"), e = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject"); d.setAttribute("width", `${b}`); d.setAttribute("height", `${c}`); d.setAttribute("viewBox", `0 0 ${b} ${c}`); e.setAttribute("width", "100%"); e.setAttribute("height", "100%"); e.setAttribute("x", "0"); e.setAttribute("y", "0"); e.setAttribute("externalResourcesRequired", "true"); d.appendChild(e); e.appendChild(a); return C(d) }) }
+            var E = (a, b) => { if (a instanceof b) return !0; a = Object.getPrototypeOf(a); return a === null ? !1 : a.constructor.name === b.name || E(a, b) }; function F(a, b) { return y(b).map(c => { var d = a.getPropertyValue(c), e = a.getPropertyPriority(c); return `${c}: ${d}${e ? " !important" : ""};` }).join(" ") }
+            function G(a, b, c, d) { a = window.getComputedStyle(a, c); var e = a.getPropertyValue("content"); if (e !== "" && e !== "none") { var f = v(); try { b.className = `${b.className} ${f}` } catch (k) { return } e = document.createElement("style"); var g = e.appendChild; c = `.${f}:${c}`; a.cssText ? (d = a.getPropertyValue("content"), d = `${a.cssText} content: '${d.replace(/'|"/g, "")}';`) : d = F(a, d); g.call(e, document.createTextNode(`${c}{${d}}`)); b.appendChild(e) } }; function H(a) { return a.search(/^(data:)/) !== -1 } function I(a, b, c) { return t(function* () { var d = yield fetch(a, b); if (d.status === 404) throw Error(`Resource "${d.url}" not found`); var e = yield d.blob(); return new Promise((f, g) => { var k = new FileReader; k.onerror = g; k.onloadend = () => { try { f(c({ v: d, result: k.result })) } catch (m) { g(m) } }; k.readAsDataURL(e) }) }) } const J = {}; function aa(a, b, c) { var d = a.replace(/\?.*/, ""); c && (d = a); /ttf|otf|eot|woff2?/i.test(d) && (d = d.replace(/.*\//, "")); return b ? `[${b}]${d}` : d }
+            function K(a, b, c) { return t(function* () { var d = aa(a, b, c.F); if (J[d] != null) return J[d]; c.B && (a += (/\?/.test(a) ? "&" : "?") + (new Date).getTime()); try { let f = yield I(a, c.l, ({ v: g, result: k }) => { b || (b = g.headers.get("Content-Type") || ""); return k.split(/,/)[1] }); var e = `data:${b};base64,${f}` } catch (f) { e = c.o || "" } return J[d] = e }) }; const L = { R: "application/font-woff", S: "application/font-woff", O: "application/font-truetype", C: "application/vnd.ms-fontobject", J: "image/png", H: "image/jpeg", G: "image/jpeg", D: "image/gif", N: "image/tiff", M: "image/svg+xml", P: "image/webp" }; function M(a) { return (a = /\.([^./]*?)$/g.exec(a)) ? a[1] : "" }; function ba(a) { return t(function* () { var b = a.toDataURL(); return b === "data:," ? a.cloneNode(!1) : B(b) }) } function ca(a, b) { return t(function* () { if (a.currentSrc) { var c = document.createElement("canvas"); let d = c.getContext("2d"); c.width = a.clientWidth; c.height = a.clientHeight; d == null || d.drawImage(a, 0, 0, c.width, c.height); c = c.toDataURL(); return B(c) } c = a.poster; c = yield K(c, L[M(c).toLowerCase()] || "", b); return B(c) }) }
+            function da(a, b) { return t(function* () { try { let c; if (a == null ? 0 : (c = a.contentDocument) == null ? 0 : c.body) return yield N(a.contentDocument.body, b, !0) } catch (c) { } return a.cloneNode(!1) }) } function ea(a, b) { return t(function* () { return E(a, HTMLCanvasElement) ? ba(a) : E(a, HTMLVideoElement) ? ca(a, b) : E(a, HTMLIFrameElement) ? da(a, b) : a.cloneNode(a.tagName != null && a.tagName.toUpperCase() === "SVG") }) }
+            function fa(a, b, c) {
+                return t(function* () {
+                    if (b.tagName != null && b.tagName.toUpperCase() === "SVG") return b; var d = []; if (a.tagName != null && a.tagName.toUpperCase() === "SLOT" && a.assignedNodes) d = w(a.assignedNodes()); else { let e; if (E(a, HTMLIFrameElement) && ((e = a.contentDocument) == null ? 0 : e.body)) d = w(a.contentDocument.body.childNodes); else { let f; d = w(((f = a.shadowRoot) != null ? f : a).childNodes) } } if (d.length === 0 || E(a, HTMLVideoElement)) return b; yield d.reduce((e, f) => e.then(() => N(f, c)).then(g => { g && b.appendChild(g) }), Promise.resolve());
+                    return b
+                })
+            } function ha(a, b, c) { var d = b.style; if (d) { var e = window.getComputedStyle(a); e.cssText ? (d.cssText = e.cssText, d.transformOrigin = e.transformOrigin) : y(c).forEach(f => { var g = e.getPropertyValue(f); f === "font-size" && g.endsWith("px") && (g = `${Math.floor(parseFloat(g.substring(0, g.length - 2))) - .1}px`); E(a, HTMLIFrameElement) && f === "display" && g === "inline" && (g = "block"); f === "d" && b.getAttribute("d") && (g = `path(${b.getAttribute("d")})`); d.setProperty(f, g, e.getPropertyPriority(f)) }) } }
+            function ia(a, b) { E(a, HTMLSelectElement) && (b = Array.from(b.children).find(c => a.value === c.getAttribute("value"))) && b.setAttribute("selected", "") }
+            function ja(a, b) {
+                return t(function* () {
+                    var c = a.querySelectorAll ? a.querySelectorAll("use") : []; if (c.length === 0) return a; var d = {}; for (var e = 0; e < c.length; e++) { var f = c[e].getAttribute("xlink:href"); if (f) { let g = document.querySelector(f); a.querySelector(f) || !g || d[f] || (d[f] = yield N(g, b, !0)) } } c = Object.values(d); if (c.length) {
+                        d = document.createElementNS("http://www.w3.org/1999/xhtml", "svg"); d.setAttribute("xmlns", "http://www.w3.org/1999/xhtml"); d.style.position = "absolute"; d.style.width = "0"; d.style.height = "0";
+                        d.style.overflow = "hidden"; d.style.display = "none"; e = document.createElementNS("http://www.w3.org/1999/xhtml", "defs"); d.appendChild(e); for (f = 0; f < c.length; f++)e.appendChild(c[f]); a.appendChild(d)
+                    } return a
+                })
+            }
+            function N(a, b, c) { return t(function* () { return c || !b.filter || b.filter(a) ? Promise.resolve(a).then(d => ea(d, b)).then(d => fa(a, d, b)).then(d => { E(d, Element) && (ha(a, d, b), G(a, d, ":before", b), G(a, d, ":after", b), E(a, HTMLTextAreaElement) && (d.textContent = a.value), E(a, HTMLInputElement) && d.setAttribute("value", a.value), ia(a, d)); return d }).then(d => ja(d, b)) : null }) }; const O = /url\((['"]?)([^'"]+?)\1\)/g, ka = /url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g, la = /src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g; function ma(a) { var b = []; a.replace(O, (c, d, e) => { b.push(e); return c }); return b.filter(c => !H(c)) }
+            function na(a, b, c, d) { return t(function* () { try { let e = c ? (new URL(b, c || void 0)).toString() : b, f; f = yield K(e, L[M(b).toLowerCase()] || "", d); return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1")})(['"]?\\))`, "g"), `$1${f}$3`) } catch (e) { } return a }) } function oa(a, { K: b }) { return b ? a.replace(la, c => { for (; ;) { let [d, , e] = ka.exec(c) || []; if (!e) return ""; if (e === b) return `src: ${d};` } }) : a }
+            function P(a, b, c) { return t(function* () { if (a.search(O) === -1) return a; var d = oa(a, c); return ma(d).reduce((e, f) => e.then(g => na(g, f, b, c)), Promise.resolve(d)) }) }; function Q(a, b, c) { return t(function* () { var d, e = (d = b.style) == null ? void 0 : d.getPropertyValue(a); return e ? (d = yield P(e, null, c), b.style.setProperty(a, d, b.style.getPropertyPriority(a)), !0) : !1 }) } function pa(a, b) { return t(function* () { (yield Q("background", a, b)) || (yield Q("background-image", a, b)); (yield Q("mask", a, b)) || (yield Q("-webkit-mask", a, b)) || (yield Q("mask-image", a, b)) || (yield Q("-webkit-mask-image", a, b)) }) }
+            function qa(a, b) { return t(function* () { var c = E(a, HTMLImageElement); if (c && !H(a.src) || E(a, SVGImageElement) && !H(a.href.baseVal)) { var d = c ? a.src : a.href.baseVal, e = yield K(d, L[M(d).toLowerCase()] || "", b); yield new Promise((f, g) => { a.onload = f; a.onerror = b.h ? (...k) => { try { f(b.h(...k)) } catch (m) { g(m) } } : g; a.decode && (a.decode = f); a.loading === "lazy" && (a.loading = "eager"); c ? (a.srcset = "", a.src = e) : a.href.baseVal = e }) } }) }
+            function ra(a, b) { return t(function* () { var c = w(a.childNodes).map(d => R(d, b)); yield Promise.all(c).then(() => a) }) } function R(a, b) { return t(function* () { E(a, Element) && (yield pa(a, b), yield qa(a, b), yield ra(a, b)) }) }; const S = {}; function T(a) { return t(function* () { var b = S[a]; if (b != null) return b; b = yield (yield fetch(a)).text(); b = { url: a, cssText: b }; return S[a] = b }) } function U(a, b) { return t(function* () { var c = a.cssText, d = /url\(["']?([^"')]+)["']?\)/g, e = (c.match(/url\([^)]+\)/g) || []).map(f => t(function* () { var g = f.replace(d, "$1"); g.startsWith("https://") || (g = (new URL(g, a.url)).href); return I(g, b.l, ({ result: k }) => { c = c.replace(f, `url(${k})`); return [f, k] }) })); return Promise.all(e).then(() => c) }) }
+            function V(a) {
+                if (a == null) return []; var b = []; a = a.replace(/(\/\*[\s\S]*?\*\/)/gi, ""); for (var c = RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})", "gi"); ;) { var d = c.exec(a); if (d === null) break; b.push(d[0]) } a = a.replace(c, ""); c = /@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi; for (d = RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})", "gi"); ;) {
+                    let e = c.exec(a); if (e === null) if (e = d.exec(a), e === null) break; else c.lastIndex = d.lastIndex; else d.lastIndex =
+                        c.lastIndex; b.push(e[0])
+                } return b
+            }
+            function sa(a, b) {
+                return t(function* () {
+                    var c = [], d = []; a.forEach(e => {
+                        if ("cssRules" in e) try { w(e.cssRules || []).forEach((f, g) => { if (f.type === CSSRule.IMPORT_RULE) { let k = g + 1; f = T(f.href).then(m => U(m, b)).then(m => V(m).forEach(q => { try { e.insertRule(q, q.startsWith("@import") ? k += 1 : e.cssRules.length) } catch (Fa) { } })).catch(() => { }); d.push(f) } }) } catch (f) {
+                            let g = a.find(k => k.href == null) || document.styleSheets[0]; e.href != null && d.push(T(e.href).then(k => U(k, b)).then(k => V(k).forEach(m => { g.insertRule(m, g.cssRules.length) })).catch(() => { }))
+                        }
+                    }); return Promise.all(d).then(() => { a.forEach(e => { if ("cssRules" in e) try { w(e.cssRules || []).forEach(f => { c.push(f) }) } catch (f) { } }); return c })
+                })
+            } function ta(a) { return a.filter(b => b.type === CSSRule.FONT_FACE_RULE).filter(b => b.style.getPropertyValue("src").search(O) !== -1) } function ua(a, b) { return t(function* () { if (a.ownerDocument == null) throw Error("Provided element is not within a Document"); var c = w(a.ownerDocument.styleSheets); c = yield sa(c, b); return ta(c) }) }
+            function va(a) { function b(d) { (d.style.fontFamily || getComputedStyle(d).fontFamily).split(",").forEach(e => { c.add(e.trim().replace(/["']/g, "")) }); Array.from(d.children).forEach(e => { e instanceof HTMLElement && b(e) }) } var c = new Set; b(a); return c } function wa(a, b) { return t(function* () { var c = yield ua(a, b), d = va(a); return (yield Promise.all(c.filter(e => d.has(e.style.fontFamily.trim().replace(/["']/g, ""))).map(e => P(e.cssText, e.parentStyleSheet ? e.parentStyleSheet.href : null, b)))).join("\n") }) }
+            function xa(a, b) { return t(function* () { var c = b.m != null ? b.m : b.A ? null : yield wa(a, b); if (c) { let d = document.createElement("style"); d.appendChild(document.createTextNode(c)); a.firstChild ? a.insertBefore(d, a.firstChild) : a.appendChild(d) } }) }; function ya(a, b = {}) { return t(function* () { var { width: c, height: d } = A(a, b), e = yield N(a, b, !0); yield xa(e, b); yield R(e, b); u(e, b); return yield D(e, c, d) }) }
+            function za(a, b = {}) {
+                return t(function* () {
+                    var { width: c, height: d } = A(a, b), e = yield ya(a, b); e = yield B(e); var f = document.createElement("canvas"), g = f.getContext("2d"), k = b.I || window.devicePixelRatio || 1, m = b.j || c, q = b.i || d; f.width = m * k; f.height = q * k; !b.L && (f.width > 16384 || f.height > 16384) && (f.width > 16384 && f.height > 16384 ? f.width > f.height ? (f.height *= 16384 / f.width, f.width = 16384) : (f.width *= 16384 / f.height, f.height = 16384) : f.width > 16384 ? (f.height *= 16384 / f.width, f.width = 16384) : (f.width *= 16384 / f.height, f.height = 16384));
+                    f.style.width = `${m}`; f.style.height = `${q}`; b.backgroundColor && (g.fillStyle = b.backgroundColor, g.fillRect(0, 0, f.width, f.height)); g.drawImage(e, 0, 0, f.width, f.height); return f
+                })
+            } function Aa(a, b = {}) { return t(function* () { return (yield za(a, b)).toDataURL() }) }; const Ba = ["gemini.google.com", "corp.google.com", "proxy.googlers.com"]; function W() { return document.body.querySelectorAll('[class*="animate"]').length > 0 } function X(a, b) { var c = document.createElement("canvas"); c.width = a; c.height = b; return c.toDataURL("image/png") } const Y = X(1, 1);
+            function Z(a) { return t(function* () { try { return yield Aa(a, { j: a.offsetWidth, i: a.offsetHeight, A: !0, filter: b => { if (b.tagName === "IMG") { let c = b.getAttribute("src"); if (!c || c.trim() === "" || b.style.display === "none") return !1 } return !0 }, o: Y, h: () => Y }) } catch (b) { return X(a.offsetWidth, a.offsetHeight) } }) }
+            function Ca() { return t(function* () { var a = document.body.offsetWidth, b = document.body.offsetHeight, c = document.body.cloneNode(!0); c.querySelectorAll('[class*="animate"]').forEach(d => { d.classList.remove(...Array.from(d.classList).filter(e => e.startsWith("animate"))) }); c.style.width = `${a}px`; c.style.height = `${b}px`; return c }) }
+            function Da(a) { return t(function* () { var b = document.body; if (W()) { var c = yield Ca(); b = c; document.body.appendChild(c) } c = yield Z(b); W() && document.body.removeChild(b); window.parent.postMessage({ type: "SEND_SCREENSHOT", image: c, topOffset: document.documentElement.scrollTop }, a.origin) }) } function Ea(a) { return t(function* () { var b = { type: "SEND_SCREENSHOT_FOR_DATA_VISUALIZATION", image: yield Z(document.body), topOffset: 0 }; window.parent.postMessage(b, a.origin) }) }
+            window.addEventListener("message", a => t(function* () { if (Ba.some(c => a.origin.includes(c))) { var b = a.data; b && (b.type === "MAKE_SCREENSHOT" && (yield Da(a)), b.type === "MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION" && (yield Ea(a))) } }));
+        })();</script>
+    <script data-bard-client-injected="true">(function () {
+            // Ensure this script is executed only once
+            if (window.firebaseAuthBridgeScriptLoaded) {
+                return;
+            }
+            window.firebaseAuthBridgeScriptLoaded = true;
+
+            let nextTokenPromiseId = 0;
+
+            // Stores { resolve, reject } for ongoing token requests
+            const pendingTokenPromises = {};
+
+            // Listen for messages from the Host Application
+            window.addEventListener('message', function (event) {
+
+                const messageData = event.data;
+
+                if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+                    const { success, token, error, promiseId } = messageData ?? {};
+                    if (pendingTokenPromises[promiseId]) {
+                        if (success) {
+                            pendingTokenPromises[promiseId].resolve(token);
+                        } else {
+                            pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+                        }
+                        delete pendingTokenPromises[promiseId];
+                    }
+                }
+            });
+
+            // Expose a function for the Generated App to request a new Firebase token
+            window.requestNewFirebaseToken = function () {
+                const currentPromiseId = nextTokenPromiseId++;
+                const promise = new Promise((resolve, reject) => {
+                    pendingTokenPromises[currentPromiseId] = { resolve, reject };
+                });
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+                        promiseId: currentPromiseId
+                    }, '*');
+                } else {
+                    pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+                    delete pendingTokenPromises[currentPromiseId];
+                }
+                return promise;
+            };
+        })();</script>
+    <script data-bard-client-injected="true">
+        let realOriginalGetUserMedia = null;
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+        }
+
+        (function () {
+            if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+                try {
+                    Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+                        get: function () {
+                            return undefined; // Or throw an error
+                        },
+                        configurable: false
+                    });
+                } catch (error) {
+                    console.error("Error defining prototype getter:", error);
+                }
+            }
+        })();
+
+        (function () {
+            const pendingMediaResolvers = {};
+            let nextMediaPromiseId = 0;
+
+            function requestMediaPermissions(constraints) {
+                const mediaPromiseId = nextMediaPromiseId++;
+                const promise = new Promise((resolve, reject) => {
+                    pendingMediaResolvers[mediaPromiseId] = (granted) => {
+                        delete pendingMediaResolvers[mediaPromiseId];
+                        resolve(granted);
+                    };
+                });
+
+                window.parent.postMessage({
+                    type: 'requestMediaPermission',
+                    constraints: constraints,
+                    promiseId: mediaPromiseId,
+                }, '*');
+
+                return promise;
+            }
+
+            let originalGetUserMedia = realOriginalGetUserMedia;
+
+            function interceptGetUserMedia() {
+                if (navigator.mediaDevices) {
+                    Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+                        value: function (constraints) {
+                            return requestMediaPermissions(constraints).then((granted) => {
+                                if (granted) {
+                                    if (originalGetUserMedia) {
+                                        return originalGetUserMedia(constraints);
+                                    } else {
+                                        throw new Error("Original getUserMedia not available.");
+                                    }
+                                } else {
+                                    throw new DOMException('Permission denied', 'NotAllowedError');
+                                }
+                            });
+                        },
+                        writable: false,
+                        configurable: false
+                    });
+                }
+            }
+
+            interceptGetUserMedia();
+
+            const observer = new MutationObserver(function (mutationsList, observer) {
+                for (const mutation of mutationsList) {
+                    if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+                        interceptGetUserMedia();
+                    } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+                        interceptGetUserMedia();
+                    } else if (mutation.type === 'childList' && mutation.addedNodes) {
+                        mutation.addedNodes.forEach(node => {
+                            if (node === navigator.mediaDevices) {
+                                interceptGetUserMedia();
+                            }
+                        });
+                    }
+                }
+            });
+
+            function interceptSpeechRecognition() {
+                if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+                    return;
+                }
+
+                const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+                const SpeechRecognitionWrapper = function (...args) {
+                    const recognizer = new OriginalSpeechRecognition(...args);
+                    const originalStart = recognizer.start.bind(recognizer);
+
+                    recognizer.start = function () {
+                        requestMediaPermissions({ audio: true }).then(granted => {
+                            if (granted) {
+                                originalStart();
+                            } else {
+                                const errorEvent = new SpeechRecognitionErrorEvent('error');
+                                errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+                                recognizer.dispatchEvent(errorEvent);
+                            }
+                        });
+                    };
+
+                    return recognizer;
+                };
+
+                SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+                SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+                if (window.SpeechRecognition) {
+                    window.SpeechRecognition = SpeechRecognitionWrapper;
+                }
+                if (window.webkitSpeechRecognition) {
+                    window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+                }
+            }
+
+            interceptSpeechRecognition();
+
+            window.addEventListener('message', function (event) {
+                if (event.data) {
+                    if (event.data.type === 'resolveMediaPermission') {
+                        const { promiseId, granted } = event.data;
+                        if (pendingMediaResolvers[promiseId]) {
+                            pendingMediaResolvers[promiseId](granted);
+                        }
+                    }
+                }
+            });
+
+        })();</script>
+    <script
+        ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}"
+        data-bard-client-injected="true">(function () {
+                'use strict'; var u = typeof Object.defineProperties == "function" ? Object.defineProperty : function (b, d, e) { if (b == Array.prototype || b == Object.prototype) return b; b[d] = e.value; return b }; function v(b) { b = ["object" == typeof globalThis && globalThis, b, "object" == typeof window && window, "object" == typeof self && self, "object" == typeof global && global]; for (var d = 0; d < b.length; ++d) { var e = b[d]; if (e && e.Math == Math) return e } throw Error("Cannot find global object"); } var w = v(this);
+                function y(b, d) { if (d) a: { var e = w; b = b.split("."); for (var h = 0; h < b.length - 1; h++) { var k = b[h]; if (!(k in e)) break a; e = e[k] } b = b[b.length - 1]; h = e[b]; d = d(h); d != h && d != null && u(e, b, { configurable: !0, writable: !0, value: d }) } } function z(b) { function d(h) { return b.next(h) } function e(h) { return b.throw(h) } return new Promise(function (h, k) { function m(n) { n.done ? h(n.value) : Promise.resolve(n.value).then(d, e).then(m, k) } m(b.next()) }) } y("globalThis", function (b) { return b || w });/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+                function A(b, d) { function e() { } e.prototype = d.prototype; b.j = d.prototype; b.prototype = new e; b.prototype.constructor = b; b.h = function (h, k, m) { for (var n = Array(arguments.length - 2), p = 2; p < arguments.length; p++)n[p - 2] = arguments[p]; return d.prototype[k].apply(h, n) } }; function B(b, d, e = "*") {
+                    function h(a) { if (typeof a === "string") return F.encode(a).buffer; if (a instanceof ArrayBuffer) return a.slice(0); if (ArrayBuffer.isView(a)) return a.buffer.slice(a.byteOffset, a.byteOffset + a.byteLength); throw Error("Invalid data type"); } function k(a) { a = h(a); var f = { type: "send", data: new Uint8Array(a) }, g; (g = r) == null || g.postMessage(f, [a]) } function m() {
+                        if (!r) throw Error("Data port not captured yet."); r.onmessage = a => {
+                            if (a.data.type === "message") {
+                                a = new MessageEvent("message", { data: G.decode(a.data.data) });
+                                let f; (f = c.onmessage) == null || f.call(c, a); c.dispatchEvent(a)
+                            }
+                        }
+                    } function n() {
+                        if (!t) throw Error("Control port not captured yet."); t.onmessage = a => {
+                            switch (a.data.type) {
+                                case "open": l = 1; var f = new Event("open"), g; (g = c.onopen) == null || g.call(c, f); c.dispatchEvent(f); q.forEach(H => { k(H) }); q = []; break; case "close": g = a.data; l = 3; g = new CloseEvent("close", { code: g.code, reason: g.reason, wasClean: g.wasClean }); (f = c.onclose) == null || f.call(c, g); c.dispatchEvent(g); break; case "error": l = 3; f = new Event("error"); let x; (x = c.onerror) ==
+                                    null || x.call(c, f); c.dispatchEvent(f)
+                            }
+                        }
+                    } function p(a) { return z(function* () { var f = new MessageChannel; t = f.port1; var g = new MessageChannel; r = g.port1; n(); m(); window.parent.postMessage({ type: "websocket_open", portOrdering: ["control", "data"], url: b, protocols: a || [], connectionId: I }, e, [f.port2, g.port2]) }()) } var c = Reflect.construct(EventTarget, [], new.target); c.CONNECTING = 0; c.OPEN = 1; c.CLOSING = 2; c.CLOSED = 3; c.url = b; c.binaryType = "arraybuffer"; c.protocol = ""; c.i = ""; var l = 0, t = null, r = null, q = [], F = new TextEncoder, G = new TextDecoder;
+                    c.onopen = null; c.onmessage = null; c.onclose = null; c.onerror = null; Object.defineProperty(c, "readyState", { get: () => l, enumerable: !0, configurable: !0 }); Object.defineProperty(c, "bufferedAmount", { get: () => { var a = 0; q.forEach(f => { a += typeof f === "string" ? f.length : f.byteLength }); return a }, enumerable: !0, configurable: !0 }); var I = function () {
+                        var a; return ((a = globalThis.crypto) == null ? 0 : a.randomUUID) ? globalThis.crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, f => {
+                            var g = Math.random() * 16 | 0; return (f ===
+                                "x" ? g : g & 3 | 8).toString(16)
+                        })
+                    }(); c.send = a => { if (l === 1) a instanceof Blob ? a.arrayBuffer().then(f => { k(f) }) : k(a); else if (l === 0) if (typeof a === "string") q.push(a); else if (a instanceof ArrayBuffer || ArrayBuffer.isView(a)) q.push(h(a)); else throw Error("Sending Blob is not supported before the connection is open."); else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.") }; c.close = (a = 1E3, f = "") => { if (l !== 2 && l !== 3) { l = 2; a = { type: "close", code: a, reason: f, wasClean: a === 1E3 }; var g; (g = t) == null || g.postMessage(a) } };
+                    Promise.resolve().then(() => p(d)); return c
+                } A(B, EventTarget); var C = document.currentScript, D = C == null ? void 0 : C.getAttribute("ws-interception-config"); if (!D) throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag."); var E = JSON.parse(D); if (!E.parentOrigin || typeof E.parentOrigin !== "string") throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+                (function (b) {
+                    var d = Object.getOwnPropertyDescriptor(window, "WebSocket"); if (!d || d.writable || d.configurable) d = Object.assign(function (e, h) {
+                        try { let k = (new URL(e)).hostname; if (b.proxiedDomains.some(m => k === m || k.endsWith(`.${m}`))) return new B(e, h, b.parentOrigin) } catch (k) { throw window.parent.postMessage({ type: "websocket_blocked", url: e, reason: "blocked_invalid_url" }, b.parentOrigin), new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`, "SecurityError"); } window.parent.postMessage({
+                            type: "websocket_blocked",
+                            url: e, reason: "blocked_domain_not_allowlisted"
+                        }, b.parentOrigin); throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`, "SecurityError");
+                    }, { CONNECTING: 0, OPEN: 1, CLOSING: 2, CLOSED: 3 }), Object.defineProperty(window, "WebSocket", { value: d, writable: !1, configurable: !1 })
+                })({ proxiedDomains: E.proxiedDomains || [], parentOrigin: E.parentOrigin });
+            }).call(this);
+        </script>
+    <script data-bard-client-injected="true">(function () { 'use strict'; function a() { window.parent.postMessage({ type: "interaction" }, "*") } window.addEventListener("click", a, { capture: !0, passive: !0 }); window.addEventListener("touchstart", a, { capture: !0, passive: !0 }); window.addEventListener("keydown", a, { capture: !0, passive: !0 }); }).call(this);
+    </script>
+    <script data-bard-client-injected="true">(function () {
+            const originalConsoleLog = console.log;
+            const originalConsoleError = console.error;
+
+            /**
+           * Normalizes an error event or a promise rejection reason into a structured error object.
+           * @param {*} errorEventOrReason The error object or reason.
+           * @return {object} Structured error data { message, name, stack }.
+           */
+            function getErrorObject(errorEventOrReason) {
+                if (errorEventOrReason instanceof Error) {
+                    return {
+                        message: errorEventOrReason.message,
+                        name: errorEventOrReason.name,
+                        stack: errorEventOrReason.stack,
+                    };
+                }
+                // Fallback for non-Error objects.
+                try {
+                    return {
+                        message: JSON.stringify(errorEventOrReason),
+                        name: 'UnknownErrorType',
+                        stack: null,
+                    };
+                } catch (e) {
+                    return {
+                        message: String(errorEventOrReason),
+                        name: 'UnknownErrorTypeNonStringifiable',
+                        stack: null,
+                    };
+                }
+            }
+
+            /**
+             * Converts an array of arguments (from log/error) into a single string.
+             * Handles Error objects specially to include their message and stack.
+             * @param {Array<*>} args - Arguments passed to console methods.
+             * @return {string} A string representation of the arguments.
+             */
+            function stringifyArgs(args) {
+                return args
+                    .map((arg) => {
+                        if (arg instanceof Error) {
+                            const { message, stack } = arg;
+                            return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+                        }
+                        if (typeof arg === 'object' && arg !== null) {
+                            try {
+                                return JSON.stringify(arg);
+                            } catch (error) {
+                                return '[Circular Object]';
+                            }
+                        } else {
+                            return String(arg);
+                        }
+                    })
+                    .join(' ');
+            }
+
+            console.log = function (...args) {
+                const logString = stringifyArgs(args);
+                window.parent.postMessage({ type: 'log', message: logString }, '*');
+                originalConsoleLog.apply(console, args);
+            };
+
+            console.error = function (...args) {
+                let errorData;
+                if (args.length > 0 && args[0] instanceof Error) {
+                    const err = args[0];
+                    // If the first arg is an Error, capture its details.
+                    errorData = {
+                        type: 'error',
+                        source: 'CONSOLE_ERROR',
+                        ...getErrorObject(err),
+                        rawArgsString: stringifyArgs(args.slice(1)),
+                        timestamp: new Date().toISOString(),
+                    };
+                } else {
+                    // If not an Error object, treat all args as a general error message.
+                    errorData = {
+                        type: 'error',
+                        source: 'CONSOLE_ERROR',
+                        message: stringifyArgs(args),
+                        name: 'ConsoleLoggedError',
+                        stack: null,
+                        timestamp: new Date().toISOString(),
+                    };
+                }
+                window.parent.postMessage(errorData, '*');
+                originalConsoleError.apply(console, args);
+            };
+
+            // Listen for global unhandled synchronous errors.
+            window.addEventListener('error', function (event) {
+                const errorDetails = event.error ? getErrorObject(event.error) : {
+                    message: event.message,
+                    name: 'GlobalError',
+                    stack: null,
+                    filename: event.filename,
+                    lineno: event.lineno,
+                    colno: event.colno,
+                };
+
+                window.parent.postMessage({
+                    type: 'error',
+                    source: 'global',
+                    ...errorDetails,
+                    message: errorDetails.message || event.message,
+                    timestamp: new Date().toISOString(),
+                }, '*');
+            });
+
+            // Listen for unhandled promise rejections (asynchronous errors).
+            window.addEventListener('unhandledrejection', function (event) {
+                const errorDetails = getErrorObject(event.reason);
+
+                window.parent.postMessage({
+                    type: 'error',
+                    source: 'unhandledrejection',
+                    ...errorDetails,
+                    message: errorDetails.message || 'Unhandled Promise Rejection',
+                    timestamp: new Date().toISOString(),
+                }, '*');
+            });
+
+        })();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Keyboard Companion</title>
+    <!-- Tailwind CSS for modern responsive glassmorphism UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0f172a;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Glassmorphism panel styling */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .glass-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Keypress float badge animation */
+        @keyframes keyFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: translateY(-30px) scale(1.15);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0.8);
+            }
+        }
+
+        .key-badge {
+            animation: keyFloat 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+    </style>
+    <style>
+        *,
+        ::before,
+        ::after {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        ::backdrop {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        /* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb
+        }
+
+        ::after,
+        ::before {
+            --tw-content: ''
+        }
+
+        :host,
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+
+        abbr:where([title]) {
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        b,
+        strong {
+            font-weight: bolder
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        button,
+        input:where([type=button]),
+        input:where([type=reset]),
+        input:where([type=submit]) {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none
+        }
+
+        :-moz-focusring {
+            outline: auto
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        progress {
+            vertical-align: baseline
+        }
+
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        summary {
+            display: list-item
+        }
+
+        blockquote,
+        dd,
+        dl,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+            margin: 0
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0
+        }
+
+        legend {
+            padding: 0
+        }
+
+        menu,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        dialog {
+            padding: 0
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        [role=button],
+        button {
+            cursor: pointer
+        }
+
+        :disabled {
+            cursor: default
+        }
+
+        audio,
+        canvas,
+        embed,
+        iframe,
+        img,
+        object,
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto
+        }
+
+        [hidden]:where(:not([hidden=until-found])) {
+            display: none
+        }
+
+        .pointer-events-none {
+            pointer-events: none
+        }
+
+        .pointer-events-auto {
+            pointer-events: auto
+        }
+
+        .absolute {
+            position: absolute
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .inset-0 {
+            inset: 0px
+        }
+
+        .left-4 {
+            left: 1rem
+        }
+
+        .right-4 {
+            right: 1rem
+        }
+
+        .top-16 {
+            top: 4rem
+        }
+
+        .top-4 {
+            top: 1rem
+        }
+
+        .z-10 {
+            z-index: 10
+        }
+
+        .z-20 {
+            z-index: 20
+        }
+
+        .z-30 {
+            z-index: 30
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem
+        }
+
+        .block {
+            display: block
+        }
+
+        .inline-block {
+            display: inline-block
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .h-10 {
+            height: 2.5rem
+        }
+
+        .h-2 {
+            height: 0.5rem
+        }
+
+        .h-3\.5 {
+            height: 0.875rem
+        }
+
+        .h-4 {
+            height: 1rem
+        }
+
+        .h-9 {
+            height: 2.25rem
+        }
+
+        .max-h-\[85vh\] {
+            max-height: 85vh
+        }
+
+        .w-10 {
+            width: 2.5rem
+        }
+
+        .w-2 {
+            width: 0.5rem
+        }
+
+        .w-3\.5 {
+            width: 0.875rem
+        }
+
+        .w-4 {
+            width: 1rem
+        }
+
+        .w-80 {
+            width: 20rem
+        }
+
+        .w-9 {
+            width: 2.25rem
+        }
+
+        .w-\[1px\] {
+            width: 1px
+        }
+
+        .w-full {
+            width: 100%
+        }
+
+        .scale-95 {
+            --tw-scale-x: .95;
+            --tw-scale-y: .95;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .transform {
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .5
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
+        }
+
+        .select-none {
+            -webkit-user-select: none;
+            user-select: none
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        .flex-col {
+            flex-direction: column
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .gap-1 {
+            gap: 0.25rem
+        }
+
+        .gap-1\.5 {
+            gap: 0.375rem
+        }
+
+        .gap-2 {
+            gap: 0.5rem
+        }
+
+        .gap-3 {
+            gap: 0.75rem
+        }
+
+        .space-y-4> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(1rem * var(--tw-space-y-reverse))
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .overflow-y-auto {
+            overflow-y: auto
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem
+        }
+
+        .rounded-3xl {
+            border-radius: 1.5rem
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-b {
+            border-bottom-width: 1px
+        }
+
+        .border-amber-300 {
+            --tw-border-opacity: 1;
+            border-color: rgb(252 211 77 / var(--tw-border-opacity, 1))
+        }
+
+        .border-amber-600 {
+            --tw-border-opacity: 1;
+            border-color: rgb(217 119 6 / var(--tw-border-opacity, 1))
+        }
+
+        .border-pink-100 {
+            --tw-border-opacity: 1;
+            border-color: rgb(252 231 243 / var(--tw-border-opacity, 1))
+        }
+
+        .border-pink-500\/50 {
+            border-color: rgb(236 72 153 / 0.5)
+        }
+
+        .border-purple-400 {
+            --tw-border-opacity: 1;
+            border-color: rgb(192 132 252 / var(--tw-border-opacity, 1))
+        }
+
+        .border-purple-500 {
+            --tw-border-opacity: 1;
+            border-color: rgb(168 85 247 / var(--tw-border-opacity, 1))
+        }
+
+        .border-slate-400 {
+            --tw-border-opacity: 1;
+            border-color: rgb(148 163 184 / var(--tw-border-opacity, 1))
+        }
+
+        .border-slate-700 {
+            --tw-border-opacity: 1;
+            border-color: rgb(51 65 85 / var(--tw-border-opacity, 1))
+        }
+
+        .border-slate-700\/60 {
+            border-color: rgb(51 65 85 / 0.6)
+        }
+
+        .border-white\/10 {
+            border-color: rgb(255 255 255 / 0.1)
+        }
+
+        .bg-amber-200 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(253 230 138 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-amber-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-cyan-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(34 211 238 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-emerald-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(52 211 153 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-pink-300 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(249 168 212 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-purple-950 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(59 7 100 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-slate-700 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-slate-900 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(15 23 42 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-gradient-to-r {
+            background-image: linear-gradient(to right, var(--tw-gradient-stops))
+        }
+
+        .bg-gradient-to-tr {
+            background-image: linear-gradient(to top right, var(--tw-gradient-stops))
+        }
+
+        .from-amber-700 {
+            --tw-gradient-from: #b45309 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(180 83 9 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .from-pink-300 {
+            --tw-gradient-from: #f9a8d4 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(249 168 212 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .from-pink-400 {
+            --tw-gradient-from: #f472b6 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(244 114 182 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .from-pink-500 {
+            --tw-gradient-from: #ec4899 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(236 72 153 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .from-purple-900 {
+            --tw-gradient-from: #581c87 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(88 28 135 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .from-slate-900 {
+            --tw-gradient-from: #0f172a var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(15 23 42 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .via-sky-200 {
+            --tw-gradient-to: rgb(186 230 253 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), #bae6fd var(--tw-gradient-via-position), var(--tw-gradient-to)
+        }
+
+        .to-amber-400 {
+            --tw-gradient-to: #fbbf24 var(--tw-gradient-to-position)
+        }
+
+        .to-cyan-500 {
+            --tw-gradient-to: #06b6d4 var(--tw-gradient-to-position)
+        }
+
+        .to-emerald-300 {
+            --tw-gradient-to: #6ee7b7 var(--tw-gradient-to-position)
+        }
+
+        .to-indigo-900 {
+            --tw-gradient-to: #312e81 var(--tw-gradient-to-position)
+        }
+
+        .to-pink-600 {
+            --tw-gradient-to: #db2777 var(--tw-gradient-to-position)
+        }
+
+        .to-rose-200 {
+            --tw-gradient-to: #fecdd3 var(--tw-gradient-to-position)
+        }
+
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text
+        }
+
+        .p-2 {
+            padding: 0.5rem
+        }
+
+        .p-2\.5 {
+            padding: 0.625rem
+        }
+
+        .p-5 {
+            padding: 1.25rem
+        }
+
+        .px-3\.5 {
+            padding-left: 0.875rem;
+            padding-right: 0.875rem
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem
+        }
+
+        .py-2\.5 {
+            padding-top: 0.625rem;
+            padding-bottom: 0.625rem
+        }
+
+        .pb-3 {
+            padding-bottom: 0.75rem
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+        }
+
+        .text-\[11px\] {
+            font-size: 11px
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+            line-height: 1rem
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .font-medium {
+            font-weight: 500
+        }
+
+        .font-semibold {
+            font-weight: 600
+        }
+
+        .uppercase {
+            text-transform: uppercase
+        }
+
+        .tracking-wide {
+            letter-spacing: 0.025em
+        }
+
+        .tracking-wider {
+            letter-spacing: 0.05em
+        }
+
+        .text-amber-400 {
+            --tw-text-opacity: 1;
+            color: rgb(251 191 36 / var(--tw-text-opacity, 1))
+        }
+
+        .text-emerald-400 {
+            --tw-text-opacity: 1;
+            color: rgb(52 211 153 / var(--tw-text-opacity, 1))
+        }
+
+        .text-pink-300 {
+            --tw-text-opacity: 1;
+            color: rgb(249 168 212 / var(--tw-text-opacity, 1))
+        }
+
+        .text-pink-400 {
+            --tw-text-opacity: 1;
+            color: rgb(244 114 182 / var(--tw-text-opacity, 1))
+        }
+
+        .text-sky-400 {
+            --tw-text-opacity: 1;
+            color: rgb(56 189 248 / var(--tw-text-opacity, 1))
+        }
+
+        .text-slate-100 {
+            --tw-text-opacity: 1;
+            color: rgb(241 245 249 / var(--tw-text-opacity, 1))
+        }
+
+        .text-slate-200 {
+            --tw-text-opacity: 1;
+            color: rgb(226 232 240 / var(--tw-text-opacity, 1))
+        }
+
+        .text-slate-300 {
+            --tw-text-opacity: 1;
+            color: rgb(203 213 225 / var(--tw-text-opacity, 1))
+        }
+
+        .text-slate-400 {
+            --tw-text-opacity: 1;
+            color: rgb(148 163 184 / var(--tw-text-opacity, 1))
+        }
+
+        .text-slate-900 {
+            --tw-text-opacity: 1;
+            color: rgb(15 23 42 / var(--tw-text-opacity, 1))
+        }
+
+        .text-transparent {
+            color: transparent
+        }
+
+        .opacity-0 {
+            opacity: 0
+        }
+
+        .shadow-2xl {
+            --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-lg {
+            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-md {
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-xl {
+            --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .duration-300 {
+            transition-duration: 300ms
+        }
+
+        .hover\:text-pink-300:hover {
+            --tw-text-opacity: 1;
+            color: rgb(249 168 212 / var(--tw-text-opacity, 1))
+        }
+
+        .hover\:text-sky-300:hover {
+            --tw-text-opacity: 1;
+            color: rgb(125 211 252 / var(--tw-text-opacity, 1))
+        }
+
+        .hover\:text-slate-200:hover {
+            --tw-text-opacity: 1;
+            color: rgb(226 232 240 / var(--tw-text-opacity, 1))
+        }
+
+        .focus\:border-pink-500:focus {
+            --tw-border-opacity: 1;
+            border-color: rgb(236 72 153 / var(--tw-border-opacity, 1))
+        }
+
+        .focus\:outline-none:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px
+        }
+    </style>
+</head>
+
+<body class="relative text-slate-100 overflow-hidden select-none">
+
+    <!-- Fullscreen Desk Canvas where Cat, Keyboard, and Accessories are drawn -->
+    <canvas id="companionCanvas" width="1504" height="150"></canvas>
+
+    <!-- Floating Keypress HUD Container for active keys floating up -->
+    <div id="keyBubbleContainer" class="absolute inset-0 pointer-events-none z-10 overflow-hidden"></div>
+
+    <!-- Top Navigation & Stats Bar -->
+    <header class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+        <!-- Brand Title & Active Key Status -->
+        <div
+            class="flex items-center gap-3 glass-panel px-4 py-2.5 rounded-2xl pointer-events-auto shadow-xl border border-white/10">
+            <div
+                class="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-500 to-amber-400 flex items-center justify-center text-slate-900 shadow-md">
+                <i class="fa-solid fa-cat text-lg"></i>
+            </div>
+            <div>
+                <h1
+                    class="text-sm font-bold tracking-wide bg-gradient-to-r from-pink-300 via-sky-200 to-emerald-300 bg-clip-text text-transparent">
+                    Bongo Neko Companion
+                </h1>
+                <p class="text-[11px] text-slate-400 font-medium flex items-center gap-1.5">
+                    <span id="typingStatusIndicator"
+                        class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Press keys or move cursor!
+                </p>
+            </div>
+        </div>
+
+        <!-- Live Typing Dashboard Stats -->
+        <div class="flex items-center gap-2 pointer-events-auto">
+            <div class="glass-panel px-3.5 py-2 rounded-2xl flex items-center gap-3 text-xs">
+                <div class="flex items-center gap-1.5 text-sky-400">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span class="text-slate-400 font-medium">WPM:</span>
+                    <span id="wpmCounter" class="font-mono font-bold text-slate-100 text-sm">0</span>
+                </div>
+                <div class="w-[1px] h-4 bg-slate-700"></div>
+                <div class="flex items-center gap-1.5 text-amber-400">
+                    <i class="fa-solid fa-fire text-amber-400"></i>
+                    <span class="text-slate-400 font-medium">Streak:</span>
+                    <span id="streakCounter" class="font-mono font-bold text-slate-100 text-sm">0</span>
+                </div>
+                <div class="w-[1px] h-4 bg-slate-700"></div>
+                <div class="flex items-center gap-1.5 text-emerald-400">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <span class="text-slate-400 font-medium">Keys:</span>
+                    <span id="totalKeysCounter" class="font-mono font-bold text-slate-100 text-sm">0</span>
+                </div>
+            </div>
+
+            <!-- Toggle Sound Button -->
+            <button id="soundToggleBtn" aria-label="Toggle Mechanical Keyboard Audio"
+                class="glass-button w-10 h-10 rounded-2xl flex items-center justify-center text-slate-300 hover:text-pink-300 shadow-lg">
+                <i class="fa-solid fa-volume-high text-sm"></i>
+            </button>
+
+            <!-- Toggle Settings Drawer -->
+            <button id="toggleMenuBtn" aria-label="Open Customization Menu"
+                class="glass-button w-10 h-10 rounded-2xl flex items-center justify-center text-slate-300 hover:text-sky-300 shadow-lg">
+                <i class="fa-solid fa-sliders text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Control Panel Drawer -->
+    <div id="controlPanel"
+        class="absolute top-16 right-4 z-30 w-80 glass-panel rounded-3xl p-5 shadow-2xl transition-all duration-300 transform scale-95 opacity-0 pointer-events-none max-h-[85vh] overflow-y-auto">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-4">
+            <h2 class="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider">
+                <i class="fa-solid fa-palette text-pink-400"></i> Customization Studio
+            </h2>
+            <button id="closeMenuBtn" class="text-slate-400 hover:text-slate-200 text-sm"><i
+                    class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="space-y-4 text-xs">
+            <!-- Cat Fur Breed / Skin -->
+            <div>
+                <label class="block font-medium text-slate-300 mb-2">Cat Breed / Fur Color</label>
+                <div class="grid grid-cols-3 gap-2" id="skinSelector">
+                    <button
+                        class="skin-btn glass-button active py-2 rounded-xl flex flex-col items-center gap-1 border-pink-500/50 text-pink-300"
+                        data-skin="calico">
+                        <span class="w-4 h-4 rounded-full bg-amber-200 border border-amber-600"></span>
+                        Calico
+                    </button>
+                    <button
+                        class="skin-btn glass-button py-2 rounded-xl flex flex-col items-center gap-1 text-slate-400"
+                        data-skin="tuxedo">
+                        <span class="w-4 h-4 rounded-full bg-slate-900 border border-slate-400"></span>
+                        Tuxedo
+                    </button>
+                    <button
+                        class="skin-btn glass-button py-2 rounded-xl flex flex-col items-center gap-1 text-slate-400"
+                        data-skin="tabby">
+                        <span class="w-4 h-4 rounded-full bg-amber-500 border border-amber-300"></span>
+                        Tabby
+                    </button>
+                    <button
+                        class="skin-btn glass-button py-2 rounded-xl flex flex-col items-center gap-1 text-slate-400"
+                        data-skin="pink">
+                        <span class="w-4 h-4 rounded-full bg-pink-300 border border-pink-100"></span>
+                        Sakura
+                    </button>
+                    <button
+                        class="skin-btn glass-button py-2 rounded-xl flex flex-col items-center gap-1 text-slate-400"
+                        data-skin="cyber">
+                        <span class="w-4 h-4 rounded-full bg-cyan-400 border border-purple-500"></span>
+                        Cyber
+                    </button>
+                    <button
+                        class="skin-btn glass-button py-2 rounded-xl flex flex-col items-center gap-1 text-slate-400"
+                        data-skin="void">
+                        <span class="w-4 h-4 rounded-full bg-purple-950 border border-purple-400"></span>
+                        Void
+                    </button>
+                </div>
+            </div>
+
+            <!-- Accessories Hat / Headwear -->
+            <div>
+                <label class="block font-medium text-slate-300 mb-2">Head Accessory</label>
+                <div class="grid grid-cols-3 gap-2" id="accessorySelector">
+                    <button
+                        class="accessory-btn glass-button active py-2 rounded-xl text-center border-pink-500/50 text-pink-300"
+                        data-acc="none">None</button>
+                    <button class="accessory-btn glass-button py-2 rounded-xl text-center text-slate-400"
+                        data-acc="glasses">Glasses 👓</button>
+                    <button class="accessory-btn glass-button py-2 rounded-xl text-center text-slate-400"
+                        data-acc="headphones">Headset 🎧</button>
+                    <button class="accessory-btn glass-button py-2 rounded-xl text-center text-slate-400"
+                        data-acc="party">Party Hat 🎉</button>
+                    <button class="accessory-btn glass-button py-2 rounded-xl text-center text-slate-400"
+                        data-acc="crown">Crown 👑</button>
+                    <button class="accessory-btn glass-button py-2 rounded-xl text-center text-slate-400"
+                        data-acc="nekoEars">RGB Ears 🐱</button>
+                </div>
+            </div>
+
+            <!-- Keyboard Switch Sound Profile -->
+            <div>
+                <label class="block font-medium text-slate-300 mb-2">Switch Sound Type</label>
+                <select id="switchSoundSelect"
+                    class="w-full glass-button text-xs text-slate-200 p-2.5 rounded-xl border border-slate-700 focus:outline-none focus:border-pink-500">
+                    <option value="blue" class="bg-slate-900">Clicky Blue Switches (Tactile)</option>
+                    <option value="red" class="bg-slate-900">Linear Red Switches (Soft Thock)</option>
+                    <option value="brown" class="bg-slate-900">Tactile Brown Switches</option>
+                    <option value="cute" class="bg-slate-900">Cute Pop &amp; Meow synth</option>
+                    <option value="retro" class="bg-slate-900">8-Bit Arcade Beeps</option>
+                </select>
+            </div>
+
+            <!-- Desk Atmosphere Environment Theme -->
+            <div>
+                <label class="block font-medium text-slate-300 mb-2">Desk Atmosphere</label>
+                <div class="grid grid-cols-2 gap-2" id="themeSelector">
+                    <button
+                        class="theme-btn glass-button active p-2 rounded-xl flex items-center gap-2 text-pink-300 border-pink-500/50"
+                        data-theme="cozy">
+                        <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-amber-700 to-indigo-900"></span>
+                        Cozy Desk
+                    </button>
+                    <button class="theme-btn glass-button p-2 rounded-xl flex items-center gap-2 text-slate-300"
+                        data-theme="gamer">
+                        <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-purple-900 to-pink-600"></span> RGB
+                        Setup
+                    </button>
+                    <button class="theme-btn glass-button p-2 rounded-xl flex items-center gap-2 text-slate-300"
+                        data-theme="sakura">
+                        <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-pink-400 to-rose-200"></span>
+                        Pastel Sakura
+                    </button>
+                    <button class="theme-btn glass-button p-2 rounded-xl flex items-center gap-2 text-slate-300"
+                        data-theme="cyber">
+                        <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-slate-900 to-cyan-500"></span>
+                        Cyber Neon
+                    </button>
+                </div>
+            </div>
+
+            <!-- Keyboard Backlight RGB Mode -->
+            <div>
+                <label class="block font-medium text-slate-300 mb-2">Keyboard RGB Glow</label>
+                <select id="keyboardRgbSelect"
+                    class="w-full glass-button text-xs text-slate-200 p-2.5 rounded-xl border border-slate-700 focus:outline-none focus:border-pink-500">
+                    <option value="rainbow" class="bg-slate-900">Dynamic Rainbow Wave</option>
+                    <option value="pink" class="bg-slate-900">Neon Pink &amp; Purple</option>
+                    <option value="cyan" class="bg-slate-900">Cyber Cyan Glow</option>
+                    <option value="amber" class="bg-slate-900">Warm Amber Backlight</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * WebAudio Sound Synthesizer Engine
+         * Generates physical keyboard switch sound profiles & cute meows completely procedurally.
+         */
+        class KeyboardAudioEngine {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+                this.profile = 'blue';
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContextClass();
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            playKeySound(keyName = '') {
+                if (this.muted) return;
+                this.init();
+
+                const now = this.ctx.currentTime;
+
+                if (this.profile === 'blue') {
+                    // Clicky tactile switch: Sharp noise click + resonance pop
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(1200 + Math.random() * 400, now);
+                    osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+
+                    // High frequency click burst
+                    const noiseBuf = this.ctx.createBuffer(1, this.ctx.sampleRate * 0.015, this.ctx.sampleRate);
+                    const output = noiseBuf.getChannelData(0);
+                    for (let i = 0; i < noiseBuf.length; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+                    const noise = this.ctx.createBufferSource();
+                    noise.buffer = noiseBuf;
+                    const noiseGain = this.ctx.createGain();
+                    noiseGain.gain.setValueAtTime(0.15, now);
+                    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+                    noise.connect(noiseGain);
+                    noiseGain.connect(this.ctx.destination);
+                    noise.start(now);
+
+                } else if (this.profile === 'red') {
+                    // Smooth linear "thock": Low frequency warm bump
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(320 + Math.random() * 60, now);
+                    osc.frequency.exponentialRampToValueAtTime(90, now + 0.06);
+
+                    gain.gain.setValueAtTime(0.35, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.065);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + 0.07);
+
+                } else if (this.profile === 'brown') {
+                    // Tactile warm switch sound
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600 + Math.random() * 150, now);
+                    osc.frequency.exponentialRampToValueAtTime(150, now + 0.05);
+
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + 0.055);
+
+                } else if (this.profile === 'cute') {
+                    // Cute pop tone
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    const baseFreq = keyName.length === 1 ? 500 + (keyName.charCodeAt(0) % 20) * 40 : 650;
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(baseFreq, now);
+                    osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.6, now + 0.06);
+
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + 0.075);
+
+                } else if (this.profile === 'retro') {
+                    // 8-bit retro arcade beep
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(800 + Math.random() * 300, now);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + 0.045);
+                }
+            }
+
+            playMeowSound() {
+                if (this.muted) return;
+                this.init();
+                const now = this.ctx.currentTime;
+
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(650, now);
+                osc.frequency.exponentialRampToValueAtTime(950, now + 0.15);
+                osc.frequency.exponentialRampToValueAtTime(500, now + 0.4);
+
+                gain.gain.setValueAtTime(0.01, now);
+                gain.gain.linearRampToValueAtTime(0.15, now + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.45);
+            }
+        }
+
+        // Global State & Configuration
+        const config = {
+            skin: 'calico',
+            accessory: 'none',
+            theme: 'cozy',
+            rgbMode: 'rainbow',
+            soundProfile: 'blue'
+        };
+
+        const themes = {
+            cozy: {
+                bgGrad: ['#0f172a', '#1e1b4b', '#31103f'],
+                deskColor: '#2d1b4e',
+                deskMat: '#1e293b',
+                matAccent: '#ec4899',
+                catShadow: 'rgba(0,0,0,0.4)'
+            },
+            gamer: {
+                bgGrad: ['#090514', '#170c2e', '#030712'],
+                deskColor: '#111827',
+                deskMat: '#0f172a',
+                matAccent: '#a855f7',
+                catShadow: 'rgba(0,0,0,0.6)'
+            },
+            sakura: {
+                bgGrad: ['#2a1b28', '#4c1d3d', '#311025'],
+                deskColor: '#5c2b45',
+                deskMat: '#4a1e35',
+                matAccent: '#f472b6',
+                catShadow: 'rgba(0,0,0,0.3)'
+            },
+            cyber: {
+                bgGrad: ['#020617', '#083344', '#0f172a'],
+                deskColor: '#0f172a',
+                deskMat: '#0284c7',
+                matAccent: '#22d3ee',
+                catShadow: 'rgba(0,0,0,0.5)'
+            }
+        };
+
+        const catSkins = {
+            calico: { body: '#f8fafc', ears: '#fb923c', patches: ['#f97316', '#334155'], innerEar: '#f472b6', eyes: '#10b981' },
+            tuxedo: { body: '#0f172a', ears: '#1e293b', patches: ['#f8fafc'], innerEar: '#f472b6', eyes: '#f59e0b' },
+            tabby: { body: '#f97316', ears: '#ea580c', patches: ['#c2410c'], innerEar: '#f472b6', eyes: '#3b82f6' },
+            pink: { body: '#fbcfe8', ears: '#f472b6', patches: ['#ffffff'], innerEar: '#db2777', eyes: '#a855f7' },
+            cyber: { body: '#06b6d4', ears: '#0891b2', patches: ['#a855f7'], innerEar: '#f43f5e', eyes: '#facc15' },
+            void: { body: '#2e1065', ears: '#1e1b4b', patches: ['#7e22ce'], innerEar: '#e879f9', eyes: '#38bdf8' }
+        };
+
+        // Standard QWERTY Virtual Keyboard Layout Definition mapped to key codes
+        const keyboardLayout = [
+            // Row 1: Function / Number Row
+            [
+                { code: 'Escape', label: 'Esc', w: 1 },
+                { code: 'Digit1', label: '1', w: 1 }, { code: 'Digit2', label: '2', w: 1 }, { code: 'Digit3', label: '3', w: 1 },
+                { code: 'Digit4', label: '4', w: 1 }, { code: 'Digit5', label: '5', w: 1 }, { code: 'Digit6', label: '6', w: 1 },
+                { code: 'Digit7', label: '7', w: 1 }, { code: 'Digit8', label: '8', w: 1 }, { code: 'Digit9', label: '9', w: 1 },
+                { code: 'Digit0', label: '0', w: 1 }, { code: 'Minus', label: '-', w: 1 }, { code: 'Equal', label: '=', w: 1 },
+                { code: 'Backspace', label: '⌫', w: 1.8 }
+            ],
+            // Row 2: QWERTY
+            [
+                { code: 'Tab', label: 'Tab', w: 1.4 },
+                { code: 'KeyQ', label: 'Q', w: 1 }, { code: 'KeyW', label: 'W', w: 1 }, { code: 'KeyE', label: 'E', w: 1 },
+                { code: 'KeyR', label: 'R', w: 1 }, { code: 'KeyT', label: 'T', w: 1 }, { code: 'KeyY', label: 'Y', w: 1 },
+                { code: 'KeyU', label: 'U', w: 1 }, { code: 'KeyI', label: 'I', w: 1 }, { code: 'KeyO', label: 'O', w: 1 },
+                { code: 'KeyP', label: 'P', w: 1 }, { code: 'BracketLeft', label: '[', w: 1 }, { code: 'BracketRight', label: ']', w: 1 },
+                { code: 'Backslash', label: '\\', w: 1.4 }
+            ],
+            // Row 3: ASDF
+            [
+                { code: 'CapsLock', label: 'Caps', w: 1.75 },
+                { code: 'KeyA', label: 'A', w: 1 }, { code: 'KeyS', label: 'S', w: 1 }, { code: 'KeyD', label: 'D', w: 1 },
+                { code: 'KeyF', label: 'F', w: 1 }, { code: 'KeyG', label: 'G', w: 1 }, { code: 'KeyH', label: 'H', w: 1 },
+                { code: 'KeyJ', label: 'J', w: 1 }, { code: 'KeyK', label: 'K', w: 1 }, { code: 'KeyL', label: 'L', w: 1 },
+                { code: 'Semicolon', label: ';', w: 1 }, { code: 'Quote', label: "'", w: 1 },
+                { code: 'Enter', label: 'Enter', w: 2.05 }
+            ],
+            // Row 4: ZXCV
+            [
+                { code: 'ShiftLeft', label: 'Shift', w: 2.25 },
+                { code: 'KeyZ', label: 'Z', w: 1 }, { code: 'KeyX', label: 'X', w: 1 }, { code: 'KeyC', label: 'C', w: 1 },
+                { code: 'KeyV', label: 'V', w: 1 }, { code: 'KeyB', label: 'B', w: 1 }, { code: 'KeyN', label: 'N', w: 1 },
+                { code: 'KeyM', label: 'M', w: 1 }, { code: 'Comma', label: ',', w: 1 }, { code: 'Period', label: '.', w: 1 },
+                { code: 'Slash', label: '/', w: 1 },
+                { code: 'ShiftRight', label: 'Shift', w: 2.55 }
+            ],
+            // Row 5: Spacebar & Modifiers
+            [
+                { code: 'ControlLeft', label: 'Ctrl', w: 1.3 },
+                { code: 'MetaLeft', label: 'Win', w: 1.25 },
+                { code: 'AltLeft', label: 'Alt', w: 1.25 },
+                { code: 'Space', label: 'SPACEBAR', w: 6.25 },
+                { code: 'AltRight', label: 'Alt', w: 1.25 },
+                { code: 'ControlRight', label: 'Ctrl', w: 1.3 },
+                { code: 'ArrowLeft', label: '◄', w: 1 },
+                { code: 'ArrowUp', label: '▲', w: 1 },
+                { code: 'ArrowDown', label: '▼', w: 1 },
+                { code: 'ArrowRight', label: '►', w: 1 }
+            ]
+        ];
+
+        // Tracking Active Key Presses & Stats
+        const activeKeysMap = new Map();
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let isMouseDown = false;
+
+        let totalKeyPressedCount = 0;
+        let comboStreak = 0;
+        let streakResetTimer = null;
+        let keypressTimestamps = [];
+        let calculatedWPM = 0;
+
+        // Physical Cat Paws & Mini Mouse Coordinates Interpolation
+        const leftPawPos = { x: 0, y: 0 };
+        const rightPawPos = { x: 0, y: 0 };
+        const miniMousePos = { x: 0, y: 0 };
+        let headBlinkTimer = 0;
+        let isEyeBlinking = false;
+
+        // Active interaction timestamps & target keys
+        let lastTypingTime = 0;
+        let lastMouseActiveTime = 0;
+        let lastLeftKeyPos = null;
+        let lastLeftKeyTime = 0;
+        let lastRightKeyPos = null;
+        let lastRightKeyTime = 0;
+
+        // Initialize Audio Synthesizer Engine
+        const audioEngine = new KeyboardAudioEngine();
+
+        class CatRenderer {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.keyRects = new Map(); // Store render coordinates of each virtual key
+                this.deskBounds = { x: 0, y: 0, w: 0, h: 0 };
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            draw() {
+                const ctx = this.ctx;
+                const width = this.canvas.width;
+                const height = this.canvas.height;
+                const theme = themes[config.theme];
+                const skin = catSkins[config.skin];
+
+                // 1. Draw Environment Background Gradient
+                const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+                bgGrad.addColorStop(0, theme.bgGrad[0]);
+                bgGrad.addColorStop(0.5, theme.bgGrad[1]);
+                bgGrad.addColorStop(1, theme.bgGrad[2]);
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(0, 0, width, height);
+
+                // 2. Draw Desk Mat & Surface
+                const deskTopY = height * 0.42;
+                ctx.fillStyle = theme.deskColor;
+                ctx.beginPath();
+                ctx.moveTo(0, deskTopY);
+                ctx.lineTo(width, deskTopY);
+                ctx.lineTo(width, height);
+                ctx.lineTo(0, height);
+                ctx.closePath();
+                ctx.fill();
+
+                // Desk Lighting Shadow / Bevel
+                ctx.fillStyle = 'rgba(0,0,0,0.25)';
+                ctx.fillRect(0, deskTopY, width, 12);
+
+                // 3. Draw Main Desk Mat Pad (Centered on desk)
+                const matW = Math.min(width * 0.88, 1100);
+                const matH = Math.min(height * 0.50, 440);
+                const matX = (width - matW) / 2;
+                const matY = deskTopY + 20;
+
+                ctx.save();
+                // Mat Shadow
+                ctx.shadowColor = 'rgba(0,0,0,0.4)';
+                ctx.shadowBlur = 25;
+                ctx.shadowOffsetY = 10;
+
+                ctx.fillStyle = theme.deskMat;
+                ctx.beginPath();
+                ctx.roundRect(matX, matY, matW, matH, 20);
+                ctx.fill();
+                ctx.restore();
+
+                // Mat Border RGB Accent Line
+                ctx.strokeStyle = theme.matAccent;
+                ctx.lineWidth = 3;
+                ctx.globalAlpha = 0.7;
+                ctx.beginPath();
+                ctx.roundRect(matX + 4, matY + 4, matW - 8, matH - 8, 16);
+                ctx.stroke();
+                ctx.globalAlpha = 1.0;
+
+                // 4. Calculate Layout Dimensions (Keyboard + Dedicated Mousepad)
+                const kbW = matW * 0.62;
+                const kbH = matH * 0.65;
+                const kbX = matX + matW * 0.04;
+                const kbY = matY + 90;
+
+                // Dedicated Mousepad Area on the right
+                const mousepadX = matX + matW * 0.69;
+                const mousepadY = kbY;
+                const mousepadW = matW * 0.27;
+                const mousepadH = kbH;
+
+                // Draw Dedicated Mousepad
+                ctx.save();
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.6)';
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.roundRect(mousepadX, mousepadY, mousepadW, mousepadH, 12);
+                ctx.fill();
+                ctx.stroke();
+
+                // Mousepad Brand Accent lines
+                ctx.strokeStyle = theme.matAccent;
+                ctx.lineWidth = 1.5;
+                ctx.globalAlpha = 0.4;
+                ctx.beginPath();
+                ctx.roundRect(mousepadX + 6, mousepadY + 6, mousepadW - 12, mousepadH - 12, 8);
+                ctx.stroke();
+                ctx.globalAlpha = 1.0;
+                ctx.restore();
+
+                // Render Cat Body & Head (Positioned naturally sitting behind controls)
+                const catCenterX = kbX + kbW * 0.48;
+                const catCenterY = kbY - 55;
+
+                this.drawCatBodyAndHead(catCenterX, catCenterY, skin, mouseX, mouseY);
+
+                // Render Virtual Keyboard
+                this.drawVirtualKeyboard(kbX, kbY, kbW, kbH);
+
+                // Calculate mini mouse position based on user's screen cursor ratio
+                const ratioX = Math.max(0, Math.min(1, mouseX / width));
+                const ratioY = Math.max(0, Math.min(1, mouseY / height));
+
+                const mouseMarginX = 28;
+                const mouseMarginY = 32;
+                const targetMiniMouseX = mousepadX + mouseMarginX + ratioX * (mousepadW - mouseMarginX * 2);
+                const targetMiniMouseY = mousepadY + mouseMarginY + ratioY * (mousepadH - mouseMarginY * 2);
+
+                // Initialize or smooth-interpolate mini mouse position
+                if (!miniMousePos.x) {
+                    miniMousePos.x = targetMiniMouseX;
+                    miniMousePos.y = targetMiniMouseY;
+                } else {
+                    miniMousePos.x += (targetMiniMouseX - miniMousePos.x) * 0.25;
+                    miniMousePos.y += (targetMiniMouseY - miniMousePos.y) * 0.25;
+                }
+
+                // Render Physical Mini Mouse on top of mousepad
+                this.drawMiniMouse(miniMousePos.x, miniMousePos.y);
+
+                // Render Animated Paws
+                this.drawPaws(catCenterX, catCenterY, skin, miniMousePos.x, miniMousePos.y, kbX, kbY, kbW, kbH, mousepadX, mousepadW);
+            }
+
+            drawVirtualKeyboard(x, y, w, h) {
+                const ctx = this.ctx;
+
+                // Keyboard Case Base
+                ctx.save();
+                ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                ctx.shadowBlur = 20;
+                ctx.shadowOffsetY = 8;
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.roundRect(x, y, w, h, 14);
+                ctx.fill();
+                ctx.restore();
+
+                // Keyboard Bevel Edge
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x, y, w, h);
+
+                // Calculate Key Sizes
+                const rowCount = keyboardLayout.length;
+                const padding = 7;
+                const availableH = h - padding * (rowCount + 1);
+                const keyH = availableH / rowCount;
+
+                this.keyRects.clear();
+
+                // Draw Keys Row by Row
+                for (let r = 0; r < rowCount; r++) {
+                    const row = keyboardLayout[r];
+                    let totalUnits = 0;
+                    row.forEach(k => totalUnits += k.w);
+
+                    const availableW = w - padding * 2;
+                    const unitW = (availableW - (row.length - 1) * 4) / totalUnits;
+
+                    let currX = x + padding;
+                    const currY = y + padding + r * (keyH + padding);
+
+                    for (let c = 0; c < row.length; c++) {
+                        const key = row[c];
+                        const keyW = key.w * unitW;
+                        const isPressed = activeKeysMap.has(key.code);
+
+                        // Key Rect Bounds
+                        const keyRect = { x: currX, y: currY, w: keyW, h: keyH, code: key.code, label: key.label };
+                        this.keyRects.set(key.code, keyRect);
+
+                        // Key Color Dynamics
+                        ctx.save();
+                        let keyBg = isPressed ? '#ec4899' : '#1e293b';
+                        let textColor = isPressed ? '#ffffff' : '#94a3b8';
+                        let shadowColor = isPressed ? '#db2777' : 'rgba(0,0,0,0.3)';
+
+                        // Dynamic RGB Glow for active keys
+                        if (isPressed) {
+                            ctx.shadowColor = shadowColor;
+                            ctx.shadowBlur = 15;
+                        }
+
+                        // Draw Key Cap Base
+                        ctx.fillStyle = keyBg;
+                        ctx.beginPath();
+                        const keyPressOffset = isPressed ? 2 : 0;
+                        ctx.roundRect(currX, currY + keyPressOffset, keyW, keyH - keyPressOffset, 6);
+                        ctx.fill();
+
+                        // Key Cap Top Highlight
+                        if (!isPressed) {
+                            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+                            ctx.beginPath();
+                            ctx.roundRect(currX + 1, currY + 1, keyW - 2, (keyH - 2) * 0.4, 5);
+                            ctx.fill();
+                        }
+
+                        // Key Cap Border
+                        ctx.strokeStyle = isPressed ? '#f472b6' : '#334155';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+
+                        // Key Label Text
+                        ctx.fillStyle = textColor;
+                        ctx.font = key.w > 2 ? 'bold 10px JetBrains Mono' : 'bold 11px JetBrains Mono';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(key.label, currX + keyW / 2, currY + keyH / 2 + keyPressOffset);
+
+                        ctx.restore();
+
+                        currX += keyW + 4;
+                    }
+                }
+            }
+
+            drawCatBodyAndHead(centerX, centerY, skin, targetX, targetY) {
+                const ctx = this.ctx;
+
+                // 1. Calculate Head Angle & Eye Offset tracking mouse position
+                const dx = targetX - centerX;
+                const dy = targetY - centerY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx);
+
+                // Smooth Eye Tracking offset
+                const lookLimit = 12;
+                const lookX = (dx / (dist + 1)) * lookLimit;
+                const lookY = (dy / (dist + 1)) * lookLimit;
+
+                // Eye position constants (declared before usage in cheek blush & eye drawing)
+                const eyeSpacing = 32;
+                const eyeY = -6;
+
+                ctx.save();
+
+                // Cat Body Torso & Shoulders Silhouette (sitting behind desk mat)
+                ctx.fillStyle = skin.body;
+                ctx.beginPath();
+                ctx.ellipse(centerX, centerY + 45, 85, 55, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Rounded Shoulder Bulges
+                ctx.beginPath();
+                ctx.ellipse(centerX - 48, centerY + 38, 28, 35, -0.3, 0, Math.PI * 2);
+                ctx.ellipse(centerX + 48, centerY + 38, 28, 35, 0.3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Calico / Fur Patch on Body
+                if (skin.patches.length > 0) {
+                    ctx.fillStyle = skin.patches[0];
+                    ctx.beginPath();
+                    ctx.ellipse(centerX - 30, centerY + 45, 25, 30, 0.2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // --- CAT HEAD BASE ---
+                ctx.translate(centerX, centerY);
+                const headTilt = Math.max(-0.15, Math.min(0.15, lookX * 0.015));
+                ctx.rotate(headTilt);
+
+                // Ears (Left & Right)
+                const earWidth = 32;
+                const earHeight = 45;
+
+                // Left Ear
+                ctx.fillStyle = skin.ears;
+                ctx.beginPath();
+                ctx.moveTo(-65, -35);
+                ctx.lineTo(-45, -95);
+                ctx.lineTo(-15, -45);
+                ctx.closePath();
+                ctx.fill();
+
+                // Left Inner Ear
+                ctx.fillStyle = skin.innerEar;
+                ctx.beginPath();
+                ctx.moveTo(-58, -40);
+                ctx.lineTo(-45, -82);
+                ctx.lineTo(-22, -47);
+                ctx.closePath();
+                ctx.fill();
+
+                // Right Ear
+                ctx.fillStyle = skin.ears;
+                ctx.beginPath();
+                ctx.moveTo(15, -45);
+                ctx.lineTo(45, -95);
+                ctx.lineTo(65, -35);
+                ctx.closePath();
+                ctx.fill();
+
+                // Right Inner Ear
+                ctx.fillStyle = skin.innerEar;
+                ctx.beginPath();
+                ctx.moveTo(22, -47);
+                ctx.lineTo(45, -82);
+                ctx.lineTo(58, -40);
+                ctx.closePath();
+                ctx.fill();
+
+                // Main Head Round Shape
+                ctx.fillStyle = skin.body;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, 75, 62, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Fur Cheeks Fluff
+                ctx.beginPath();
+                ctx.ellipse(-70, 10, 20, 15, -0.3, 0, Math.PI * 2);
+                ctx.ellipse(70, 10, 20, 15, 0.3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Cute Cheek Rosy Blush
+                ctx.fillStyle = 'rgba(244, 114, 182, 0.35)';
+                ctx.beginPath();
+                ctx.ellipse(-eyeSpacing - 6, eyeY + 18, 10, 6, 0, 0, Math.PI * 2);
+                ctx.ellipse(eyeSpacing + 6, eyeY + 18, 10, 6, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Tabby / Patch markings on forehead
+                if (skin.patches.length > 0) {
+                    ctx.fillStyle = skin.patches[0];
+                    ctx.beginPath();
+                    ctx.ellipse(0, -42, 14, 18, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // --- CAT EYES (Expressive tracking) ---
+                const eyeRadiusX = 14;
+                const eyeRadiusY = 16;
+
+                // Handle Periodic Blinking
+                headBlinkTimer += 0.016;
+                if (headBlinkTimer > 3.5) {
+                    isEyeBlinking = true;
+                    if (headBlinkTimer > 3.65) {
+                        isEyeBlinking = false;
+                        headBlinkTimer = 0;
+                    }
+                }
+
+                if (isEyeBlinking) {
+                    // Closed Happy Sleeping Eyes
+                    ctx.strokeStyle = '#334155';
+                    ctx.lineWidth = 3.5;
+                    ctx.lineCap = 'round';
+
+                    ctx.beginPath();
+                    ctx.arc(-eyeSpacing, eyeY, 12, 0.2, Math.PI - 0.2);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.arc(eyeSpacing, eyeY, 12, 0.2, Math.PI - 0.2);
+                    ctx.stroke();
+                } else {
+                    // Left Eye Sclera & Pupil
+                    ctx.fillStyle = skin.eyes;
+                    ctx.beginPath();
+                    ctx.ellipse(-eyeSpacing, eyeY, eyeRadiusX, eyeRadiusY, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Pupil Left
+                    ctx.fillStyle = '#0f172a';
+                    ctx.beginPath();
+                    ctx.ellipse(-eyeSpacing + lookX * 0.4, eyeY + lookY * 0.4, 7, 12, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Eye Catchlight Sparkle
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(-eyeSpacing + lookX * 0.4 - 3, eyeY + lookY * 0.4 - 4, 3, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Right Eye Sclera & Pupil
+                    ctx.fillStyle = skin.eyes;
+                    ctx.beginPath();
+                    ctx.ellipse(eyeSpacing, eyeY, eyeRadiusX, eyeRadiusY, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Pupil Right
+                    ctx.fillStyle = '#0f172a';
+                    ctx.beginPath();
+                    ctx.ellipse(eyeSpacing + lookX * 0.4, eyeY + lookY * 0.4, 7, 12, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Eye Catchlight Sparkle
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(eyeSpacing + lookX * 0.4 - 3, eyeY + lookY * 0.4 - 4, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // --- SNOUT, NOSE & MOUTH ---
+                // Pink Nose
+                ctx.fillStyle = '#f472b6';
+                ctx.beginPath();
+                ctx.moveTo(-5, 12);
+                ctx.lineTo(5, 12);
+                ctx.lineTo(0, 18);
+                ctx.closePath();
+                ctx.fill();
+
+                // Cute Mouth Curves: :w
+                ctx.strokeStyle = '#475569';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.arc(-6, 20, 6, 0, Math.PI * 0.85);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(6, 20, 6, Math.PI * 0.15, Math.PI);
+                ctx.stroke();
+
+                // Whiskers
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.lineWidth = 1.8;
+                // Left Whiskers
+                ctx.beginPath(); ctx.moveTo(-45, 12); ctx.lineTo(-85, 4); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(-45, 18); ctx.lineTo(-88, 20); ctx.stroke();
+                // Right Whiskers
+                ctx.beginPath(); ctx.moveTo(45, 12); ctx.lineTo(85, 4); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(45, 18); ctx.lineTo(88, 20); ctx.stroke();
+
+                // --- ACCESSORIES RENDER ---
+                this.drawAccessories(config.accessory);
+
+                ctx.restore();
+            }
+
+            drawAccessories(type) {
+                const ctx = this.ctx;
+                if (type === 'glasses') {
+                    ctx.strokeStyle = '#f59e0b';
+                    ctx.lineWidth = 3.5;
+                    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+
+                    // Left Lens
+                    ctx.beginPath(); ctx.arc(-32, -6, 20, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+                    // Right Lens
+                    ctx.beginPath(); ctx.arc(32, -6, 20, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+                    // Bridge
+                    ctx.beginPath(); ctx.moveTo(-12, -6); ctx.lineTo(12, -6); ctx.stroke();
+
+                } else if (type === 'headphones') {
+                    // Headset Band arching over top of head
+                    ctx.strokeStyle = '#ec4899';
+                    ctx.lineWidth = 7;
+                    ctx.beginPath();
+                    ctx.arc(0, -15, 66, Math.PI * 1.15, Math.PI * 1.85);
+                    ctx.stroke();
+
+                    // Outer Ear Cups on sides of head
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.beginPath(); ctx.roundRect(-76, -42, 20, 44, 10); ctx.fill();
+                    ctx.beginPath(); ctx.roundRect(56, -42, 20, 44, 10); ctx.fill();
+
+                    // Inner Cushion Detailing
+                    ctx.fillStyle = '#0284c7';
+                    ctx.beginPath(); ctx.roundRect(-72, -36, 12, 32, 6); ctx.fill();
+                    ctx.beginPath(); ctx.roundRect(60, -36, 12, 32, 6); ctx.fill();
+
+                } else if (type === 'party') {
+                    // Party Hat Cone
+                    ctx.fillStyle = '#ec4899';
+                    ctx.beginPath(); ctx.moveTo(0, -110); ctx.lineTo(-25, -50); ctx.lineTo(25, -50); ctx.closePath(); ctx.fill();
+                    // Yellow Dots
+                    ctx.fillStyle = '#facc15';
+                    ctx.beginPath(); ctx.arc(0, -80, 5, 0, Math.PI * 2); ctx.fill();
+                    ctx.beginPath(); ctx.arc(-10, -60, 4, 0, Math.PI * 2); ctx.fill();
+                    // Pom-pom
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.beginPath(); ctx.arc(0, -112, 8, 0, Math.PI * 2); ctx.fill();
+
+                } else if (type === 'crown') {
+                    // Gold Crown
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.moveTo(-30, -50); ctx.lineTo(-35, -85); ctx.lineTo(-15, -65);
+                    ctx.lineTo(0, -90); ctx.lineTo(15, -65); ctx.lineTo(35, -85);
+                    ctx.lineTo(30, -50); ctx.closePath(); ctx.fill();
+                    // Jewels
+                    ctx.fillStyle = '#ef4444';
+                    ctx.beginPath(); ctx.arc(0, -60, 4, 0, Math.PI * 2); ctx.fill();
+
+                } else if (type === 'nekoEars') {
+                    // Neon RGB Cat Ear Extensions
+                    ctx.strokeStyle = '#22d3ee';
+                    ctx.lineWidth = 4;
+                    ctx.shadowColor = '#22d3ee'; ctx.shadowBlur = 12;
+                    ctx.beginPath(); ctx.moveTo(-50, -50); ctx.lineTo(-45, -90); ctx.lineTo(-25, -55); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(25, -55); ctx.lineTo(45, -90); ctx.lineTo(50, -50); ctx.stroke();
+                }
+            }
+
+            drawMiniMouse(x, y) {
+                const ctx = this.ctx;
+                ctx.save();
+
+                // Physical Ergonomic Mini Mouse Shadow
+                ctx.shadowColor = 'rgba(0,0,0,0.4)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetY = 4;
+
+                // Mouse Body
+                const mousePressY = isMouseDown ? 2 : 0;
+                ctx.fillStyle = isMouseDown ? '#ec4899' : '#f8fafc';
+                ctx.beginPath();
+                ctx.ellipse(x, y + mousePressY, 18, 25, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Mouse Split Line
+                ctx.strokeStyle = '#94a3b8';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(x, y - 23 + mousePressY);
+                ctx.lineTo(x, y - 8 + mousePressY);
+                ctx.stroke();
+
+                // Mouse Scroll Wheel
+                ctx.fillStyle = isMouseDown ? '#f472b6' : '#475569';
+                ctx.beginPath();
+                ctx.roundRect(x - 2, y - 16 + mousePressY, 4, 8, 2);
+                ctx.fill();
+
+                // Mouse Glow LED Accent
+                ctx.fillStyle = config.theme === 'gamer' ? '#a855f7' : '#ec4899';
+                ctx.beginPath();
+                ctx.arc(x, y + 14 + mousePressY, 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+
+            drawPaws(catX, catY, skin, miniMouseX, miniMouseY, kbX, kbY, kbW, kbH, mousepadX, mousepadW) {
+                const ctx = this.ctx;
+                const now = Date.now();
+
+                const isMouseActive = (now - lastMouseActiveTime < 1500) || isMouseDown;
+                const isLeftTyping = (now - lastLeftKeyTime < 650);
+                const isRightTyping = (now - lastRightKeyTime < 650);
+
+                // --- 1. RESTING POSITIONS (COZY NEAR CAT CHEST AT START / IDLE) ---
+                const restLeftX = catX - 42;
+                const restLeftY = kbY - 20;
+
+                const restRightX = catX + 42;
+                const restRightY = kbY - 20;
+
+                // --- 2. LEFT PAW TARGET CALCULATION ---
+                let targetLeftX = restLeftX;
+                let targetLeftY = restLeftY;
+
+                if (isLeftTyping && lastLeftKeyPos) {
+                    targetLeftX = lastLeftKeyPos.x;
+                    targetLeftY = lastLeftKeyPos.y;
+                }
+
+                if (!leftPawPos.x) {
+                    leftPawPos.x = restLeftX;
+                    leftPawPos.y = restLeftY;
+                } else {
+                    leftPawPos.x += (targetLeftX - leftPawPos.x) * 0.38;
+                    leftPawPos.y += (targetLeftY - leftPawPos.y) * 0.38;
+                }
+
+                // --- 3. RIGHT PAW TARGET CALCULATION ---
+                let targetRightX = restRightX;
+                let targetRightY = restRightY;
+
+                if (isMouseActive) {
+                    // Right paw actively extends to control mini mouse
+                    targetRightX = miniMouseX;
+                    targetRightY = miniMouseY - 3;
+                } else if (isRightTyping && lastRightKeyPos) {
+                    // Mouse idle: Right paw extends to type right side of keyboard
+                    targetRightX = lastRightKeyPos.x;
+                    targetRightY = lastRightKeyPos.y;
+                }
+
+                if (!rightPawPos.x) {
+                    rightPawPos.x = restRightX;
+                    rightPawPos.y = restRightY;
+                } else {
+                    rightPawPos.x += (targetRightX - rightPawPos.x) * 0.38;
+                    rightPawPos.y += (targetRightY - rightPawPos.y) * 0.38;
+                }
+
+                // Shoulders Origin Points on Cat Torso
+                const shoulderLeftX = catX - 42;
+                const shoulderLeftY = catY + 32;
+                const shoulderRightX = catX + 42;
+                const shoulderRightY = catY + 32;
+
+                // --- DRAW LEFT PAW & ARM ---
+                ctx.save();
+                ctx.shadowColor = 'rgba(0,0,0,0.25)';
+                ctx.shadowBlur = 8;
+                ctx.shadowOffsetY = 4;
+
+                // Curved Left Arm with natural elbow flex
+                const elbowLeftX = (shoulderLeftX + leftPawPos.x) / 2 - 12;
+                const elbowLeftY = (shoulderLeftY + leftPawPos.y) / 2 + 10;
+
+                ctx.strokeStyle = skin.body;
+                ctx.lineWidth = 26;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.beginPath();
+                ctx.moveTo(shoulderLeftX, shoulderLeftY);
+                ctx.quadraticCurveTo(elbowLeftX, elbowLeftY, leftPawPos.x, leftPawPos.y);
+                ctx.stroke();
+
+                // Left Paw Base & Toe Beans
+                ctx.fillStyle = skin.body;
+                ctx.beginPath();
+                ctx.arc(leftPawPos.x, leftPawPos.y, 16, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#f472b6';
+                ctx.beginPath();
+                ctx.arc(leftPawPos.x, leftPawPos.y + 1, 6, 0, Math.PI * 2);
+                ctx.fill();
+                for (let i = -1; i <= 1; i++) {
+                    ctx.beginPath();
+                    ctx.arc(leftPawPos.x + i * 6, leftPawPos.y - 6.5, 2.8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+
+                // --- DRAW RIGHT PAW & ARM ---
+                ctx.save();
+                ctx.shadowColor = 'rgba(0,0,0,0.25)';
+                ctx.shadowBlur = 8;
+                ctx.shadowOffsetY = 4;
+
+                // Curved Right Arm with natural elbow flex
+                const elbowRightX = (shoulderRightX + rightPawPos.x) / 2 + 12;
+                const elbowRightY = (shoulderRightY + rightPawPos.y) / 2 + 10;
+
+                ctx.strokeStyle = skin.body;
+                ctx.lineWidth = 26;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.beginPath();
+                ctx.moveTo(shoulderRightX, shoulderRightY);
+                ctx.quadraticCurveTo(elbowRightX, elbowRightY, rightPawPos.x, rightPawPos.y);
+                ctx.stroke();
+
+                // Right Paw Base & Toe Beans
+                ctx.fillStyle = skin.body;
+                ctx.beginPath();
+                ctx.arc(rightPawPos.x, rightPawPos.y, 16, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#f472b6';
+                ctx.beginPath();
+                ctx.arc(rightPawPos.x, rightPawPos.y + 1, 6, 0, Math.PI * 2);
+                ctx.fill();
+                for (let i = -1; i <= 1; i++) {
+                    ctx.beginPath();
+                    ctx.arc(rightPawPos.x + i * 6, rightPawPos.y - 6.5, 2.8, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        window.onload = function () {
+            const canvas = document.getElementById('companionCanvas');
+            const renderer = new CatRenderer(canvas);
+
+            function handleResize() {
+                renderer.resize();
+            }
+            window.addEventListener('resize', handleResize);
+            handleResize();
+
+            // Track Mouse Movement & Clicks
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                lastMouseActiveTime = Date.now();
+            });
+
+            window.addEventListener('mousedown', (e) => {
+                if (e.target.closest('#controlPanel') || e.target.closest('header')) return;
+                isMouseDown = true;
+                lastMouseActiveTime = Date.now();
+                audioEngine.playKeySound('click');
+            });
+
+            window.addEventListener('mouseup', () => {
+                isMouseDown = false;
+            });
+
+            // Physical Keyboard Event Handling
+            window.addEventListener('keydown', (e) => {
+                lastTypingTime = Date.now();
+                const now = Date.now();
+
+                // Store pressed key coordinates for cat paw targeting and popup placement
+                let keyPos = null;
+                const keyRect = renderer.keyRects.get(e.code);
+                if (keyRect) {
+                    keyPos = {
+                        x: keyRect.x + keyRect.w / 2,
+                        y: keyRect.y + keyRect.h / 2
+                    };
+
+                    const isMouseActive = (now - lastMouseActiveTime < 1500) || isMouseDown;
+
+                    if (isMouseActive) {
+                        // Mouse active: Left paw handles the entire keyboard
+                        lastLeftKeyPos = keyPos;
+                        lastLeftKeyTime = now;
+                    } else {
+                        // Mouse idle: Divide keyboard between left and right paws
+                        let minX = Infinity, maxX = -Infinity;
+                        renderer.keyRects.forEach(r => {
+                            if (r.x < minX) minX = r.x;
+                            if (r.x + r.w > maxX) maxX = r.x + r.w;
+                        });
+                        const kbCenterX = (minX + maxX) / 2;
+
+                        if (keyPos.x < kbCenterX) {
+                            lastLeftKeyPos = keyPos;
+                            lastLeftKeyTime = now;
+                        } else {
+                            lastRightKeyPos = keyPos;
+                            lastRightKeyTime = now;
+                        }
+                    }
+                }
+
+                // Prevent key repeat duplicate counts
+                if (!activeKeysMap.has(e.code)) {
+                    activeKeysMap.set(e.code, true);
+
+                    // Update Statistics & Combo Streaks
+                    totalKeyPressedCount++;
+                    comboStreak++;
+                    document.getElementById('totalKeysCounter').textContent = totalKeyPressedCount;
+                    document.getElementById('streakCounter').textContent = comboStreak;
+
+                    // Reset combo streak if idle for 2 seconds
+                    clearTimeout(streakResetTimer);
+                    streakResetTimer = setTimeout(() => {
+                        comboStreak = 0;
+                        document.getElementById('streakCounter').textContent = '0';
+                    }, 2000);
+
+                    // WPM Speed Tracking
+                    const now = Date.now();
+                    keypressTimestamps.push(now);
+                    // Filter keypresses in the last 10 seconds
+                    keypressTimestamps = keypressTimestamps.filter(t => now - t < 10000);
+                    calculatedWPM = Math.round((keypressTimestamps.length / 5) * 6);
+                    document.getElementById('wpmCounter').textContent = calculatedWPM;
+
+                    // Play Mechanical Switch Sound
+                    audioEngine.playKeySound(e.key);
+
+                    // Spawn Visual Floating Key Badge above the exact pressed key
+                    spawnKeyBubble(e.key || e.code, keyPos);
+
+                    // Random Meow Easter Egg on Spacebar or Enter
+                    if (e.code === 'Space' && Math.random() < 0.15) {
+                        audioEngine.playMeowSound();
+                    }
+                }
+            });
+
+            window.addEventListener('keyup', (e) => {
+                activeKeysMap.delete(e.code);
+            });
+
+            // Floating Key Badges Spawner
+            function spawnKeyBubble(label, keyPos) {
+                const container = document.getElementById('keyBubbleContainer');
+                const badge = document.createElement('div');
+                badge.className = 'key-badge absolute px-3 py-1.5 rounded-xl font-mono text-xs font-bold bg-pink-500/80 text-white shadow-lg backdrop-blur-md border border-white/20 transform -translate-x-1/2';
+
+                // Position directly above the pressed key on the virtual keyboard
+                const startX = keyPos ? keyPos.x : (leftPawPos.x || window.innerWidth / 2);
+                const startY = keyPos ? keyPos.y : (leftPawPos.y || window.innerHeight / 2);
+
+                badge.style.left = `${startX + (Math.random() - 0.5) * 8}px`;
+                badge.style.top = `${startY - 12}px`;
+                badge.textContent = label.length === 1 ? label.toUpperCase() : label;
+
+                container.appendChild(badge);
+
+                setTimeout(() => {
+                    badge.remove();
+                }, 700);
+            }
+
+            // Toggle Settings Menu Drawer
+            const panel = document.getElementById('controlPanel');
+            const toggleBtn = document.getElementById('toggleMenuBtn');
+            const closeBtn = document.getElementById('closeMenuBtn');
+
+            function toggleMenu() {
+                const isHidden = panel.classList.contains('opacity-0');
+                if (isHidden) {
+                    panel.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+                    panel.classList.add('opacity-100', 'scale-100');
+                } else {
+                    panel.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+                    panel.classList.remove('opacity-100', 'scale-100');
+                }
+            }
+
+            toggleBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+
+            // Mute / Sound Toggle Button
+            const soundBtn = document.getElementById('soundToggleBtn');
+            soundBtn.addEventListener('click', () => {
+                audioEngine.muted = !audioEngine.muted;
+                soundBtn.innerHTML = audioEngine.muted ?
+                    '<i class="fa-solid fa-volume-xmark text-slate-500"></i>' :
+                    '<i class="fa-solid fa-volume-high text-sm"></i>';
+            });
+
+            // Skin Selector Buttons
+            document.querySelectorAll('.skin-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.skin-btn').forEach(b => {
+                        b.classList.remove('active', 'text-pink-300', 'border-pink-500/50');
+                        b.classList.add('text-slate-400');
+                    });
+                    const target = e.currentTarget;
+                    target.classList.add('active', 'text-pink-300', 'border-pink-500/50');
+                    config.skin = target.dataset.skin;
+                });
+            });
+
+            // Accessory Selector Buttons
+            document.querySelectorAll('.accessory-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.accessory-btn').forEach(b => {
+                        b.classList.remove('active', 'text-pink-300', 'border-pink-500/50');
+                        b.classList.add('text-slate-400');
+                    });
+                    const target = e.currentTarget;
+                    target.classList.add('active', 'text-pink-300', 'border-pink-500/50');
+                    config.accessory = target.dataset.acc;
+                });
+            });
+
+            // Theme Environment Selector Buttons
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.theme-btn').forEach(b => {
+                        b.classList.remove('active', 'text-pink-300', 'border-pink-500/50');
+                        b.classList.add('text-slate-300');
+                    });
+                    const target = e.currentTarget;
+                    target.classList.add('active', 'text-pink-300', 'border-pink-500/50');
+                    config.theme = target.dataset.theme;
+                });
+            });
+
+            // Switch Sound Dropdown
+            document.getElementById('switchSoundSelect').addEventListener('change', (e) => {
+                audioEngine.profile = e.target.value;
+            });
+
+            function animate() {
+                renderer.draw();
+                requestAnimationFrame(animate);
+            }
+
+            // Start Animation Frame Loop
+            animate();
+        };
+    </script>
+
+</body>
+
+</html>
