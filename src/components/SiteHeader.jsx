@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaBars, FaXmark, FaArrowRight } from 'react-icons/fa6';
 import { Link, useLocation } from 'react-router-dom';
 
 const SiteHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeHash, setActiveHash] = useState('');
     const location = useLocation();
 
     const navLinks = [
@@ -22,6 +23,39 @@ const SiteHeader = () => {
         }
     ];
 
+    // ScrollSpy Effect: Track active section while scrolling on the home page
+    useEffect(() => {
+        if (location.pathname !== '/') {
+            setActiveHash('');
+            return;
+        }
+
+        const handleScroll = () => {
+            const hashItems = navLinks.filter((link) => link.isHash);
+            const scrollPosition = window.scrollY + 100; // Offset for sticky header
+
+            let currentHash = '';
+            for (const item of hashItems) {
+                const elementId = item.href.replace('/#', '');
+                const element = document.getElementById(elementId);
+                if (element) {
+                    const top = element.offsetTop;
+                    const height = element.offsetHeight;
+                    if (scrollPosition >= top && scrollPosition < top + height) {
+                        currentHash = item.href;
+                        break;
+                    }
+                }
+            }
+            setActiveHash(currentHash);
+        };
+
+        // Run once on load/route change, then listen to scroll
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [location.pathname]);
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -32,13 +66,12 @@ const SiteHeader = () => {
         if (link.isHash) {
             const targetId = link.href.replace('/#', '');
             
-            // If already on the homepage, perform smooth scroll directly
             if (location.pathname === '/') {
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     e.preventDefault();
                     targetElement.scrollIntoView();
-                    // Update URL hash without forcing a full page re-render
+                    setActiveHash(link.href);
                     window.history.pushState(null, '', link.href);
                 }
             }
@@ -46,10 +79,20 @@ const SiteHeader = () => {
     };
 
     const renderNavLink = (link, extraClasses = '') => {
-        if (link.isHash) {
-            const isActive = location.pathname + location.hash === link.href;
-            const activeColorClass = isActive ? 'text-[#2dd4bf]' : 'text-gray-300 hover:text-white';
+        let isActive = false;
 
+        if (link.isHash) {
+            // Active if on home page AND current active hash matches link.href
+            isActive = location.pathname === '/' && activeHash === link.href;
+        } else {
+            // Active if standard path matches location
+            isActive = location.pathname === link.href;
+        }
+
+        const activeColorClass = isActive ? 'text-[#2dd4bf] font-semibold' : 'text-gray-300 hover:text-white';
+
+        // 1. Hash Links (#skills, #experience, etc.)
+        if (link.isHash) {
             return (
                 <Link
                     key={link.name}
@@ -62,18 +105,33 @@ const SiteHeader = () => {
             );
         }
 
+        // 2. External or Download Links (Resume PDF)
+        if (link.target === '_blank' || link.download) {
+            return (
+                <a
+                    key={link.name}
+                    href={link.href}
+                    target={link.target || '_self'}
+                    rel={link.rel || undefined}
+                    download={link.download || undefined}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`text-gray-300 hover:text-white transition-colors duration-200 ${extraClasses}`}
+                >
+                    {link.name}
+                </a>
+            );
+        }
+
+        // 3. Internal React Router Links (/playzone)
         return (
-            <a
+            <Link
                 key={link.name}
-                href={link.href}
-                target={link.target || '_self'}
-                rel={link.rel || undefined}
-                download={link.download || undefined}
+                to={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-gray-300 hover:text-white transition-colors duration-200 ${extraClasses}`}
+                className={`transition-colors duration-200 ${activeColorClass} ${extraClasses}`}
             >
                 {link.name}
-            </a>
+            </Link>
         );
     };
 
