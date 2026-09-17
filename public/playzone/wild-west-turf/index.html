@@ -74,10 +74,9 @@
             animation: goldGlow 2s infinite;
         }
 
-        /* Dynamic Whip Button Pulse */
         @keyframes pulseFast {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            50% { transform: scale(1.05); }
         }
         .animate-pulse-fast {
             animation: pulseFast 0.6s infinite;
@@ -175,17 +174,22 @@
                 <canvas id="race-canvas" class="w-full h-auto block"></canvas>
 
                 <!-- Race Announcement Overlay -->
-                <div id="announcement-overlay" class="absolute inset-0 flex items-center justify-center bg-black/60 pointer-events-none transition-opacity duration-300 opacity-100">
+                <div id="announcement-overlay" class="absolute inset-0 flex items-center justify-center bg-black/60 pointer-events-none transition-opacity duration-300 opacity-100 z-20">
                     <div id="announcement-text" class="text-6xl sm:text-8xl font-western text-gold-500 font-black tracking-widest drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] scale-110 transition transform">
                         3
                     </div>
                 </div>
             </div>
 
+            <!-- Interactive Whip / Boost Control Dashboard -->
+            <div id="whip-controls-container" class="w-full mt-4 glass-card rounded-2xl p-4 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3 text-center">
+                <!-- Dynamic Whip Buttons inserted here -->
+            </div>
+
             <!-- Race Dynamic Speed Info Banner -->
-            <div class="w-full mt-4 glass-card rounded-2xl p-4 text-center">
+            <div class="w-full mt-3 glass-card rounded-2xl p-3 text-center">
                 <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gold-500">
-                    🏇 Dynamic Turf Pacing • Unpredictable speed changes & exciting lead turnarounds!
+                    🏇 Realistic Equine Physics & Dynamic Strides • Tap WHIP for a burst of speed!
                 </p>
             </div>
         </section>
@@ -236,7 +240,6 @@
     </footer>
 
     <script>
-        // Colors for horses/jockeys
         const AVAILABLE_COLORS = [
             { name: 'Violet', hex: '#8F00FF', bg: 'bg-purple-600', text: 'text-purple-400', border: 'border-purple-500' },
             { name: 'Indigo', hex: '#4B0082', bg: 'bg-indigo-700', text: 'text-indigo-400', border: 'border-indigo-600' },
@@ -248,11 +251,23 @@
             { name: 'Crimson', hex: '#991B1B', bg: 'bg-rose-800', text: 'text-rose-400', border: 'border-rose-700' }
         ];
 
+        // Equine coat presets for realistic visual variety
+        const EQUINE_COATS = [
+            { body: '#3d1e0d', highlight: '#5e3016', mane: '#120803', muzzle: '#261207', hoof: '#111111' }, // Dark Bay
+            { body: '#8c3d1d', highlight: '#b35329', mane: '#5c240e', muzzle: '#5e2711', hoof: '#222222' }, // Chestnut
+            { body: '#1f2421', highlight: '#343b37', mane: '#0d0f0e', muzzle: '#141715', hoof: '#000000' }, // Black Beauty
+            { body: '#8e979e', highlight: '#adb7c0', mane: '#3a4146', muzzle: '#5c646b', hoof: '#222222' }, // Dappled Gray
+            { body: '#cfa253', highlight: '#e3b868', mane: '#f7eddc', muzzle: '#8c6b32', hoof: '#332a1b' }, // Palomino
+            { body: '#6e2b18', highlight: '#943d23', mane: '#2e1007', muzzle: '#451a0d', hoof: '#1a1a1a' }, // Sorrel
+            { body: '#5c3826', highlight: '#7a4c35', mane: '#24140b', muzzle: '#3b2216', hoof: '#1f1f1f' }, // Dun
+            { body: '#733320', highlight: '#99462d', mane: '#1c0a05', muzzle: '#471d11', hoof: '#111111' }  // Mahogany
+        ];
+
         const WAGER_PRESETS = [100, 250, 500, 1000];
 
         // State variables
         let selectedPlayerCount = 2;
-        let playersData = []; // [{ id, colorIdx, wager, boostCooldown, boostStamina }]
+        let playersData = [];
         let totalPotAmount = 0;
         let audioEnabled = true;
         let audioCtx = null;
@@ -262,7 +277,7 @@
         let raceAnimationId = null;
         let raceState = 'IDLE'; // IDLE, COUNTDOWN, RUNNING, FINISHED
         let raceStartTime = 0;
-        let horsesState = []; // [{ id, color, x, speed, finishTime, rank, stamina, whipCooldown }]
+        let horsesState = []; 
         let dustParticles = [];
         let finishOrder = [];
 
@@ -357,7 +372,7 @@
             for (let num = 2; num <= 7; num++) {
                 const isSelected = selectedPlayerCount === num;
                 const card = document.createElement('div');
-                card.className = `p-5 rounded-2xl border-2 cursor-pointer transition transform hover:-translate-y-1 flex flex-col items-center justify-center ${
+                card.className = `p-4 sm:p-5 rounded-2xl border-2 cursor-pointer transition transform hover:-translate-y-1 flex flex-col items-center justify-between ${
                     isSelected 
                         ? 'border-gold-500 bg-gold-500/10 text-gold-500 shadow-lg shadow-gold-500/10' 
                         : 'border-gray-800 bg-gray-900/60 text-gray-400 hover:border-gray-700'
@@ -368,8 +383,16 @@
                     renderPlayerCountGrid();
                 };
 
+                // Generate exact count of horse icons for each player card
+                let horseIcons = '';
+                for (let k = 0; k < num; k++) {
+                    horseIcons += '<span class="text-base sm:text-lg">🏇</span>';
+                }
+
                 card.innerHTML = `
-                    <span class="text-3xl mb-1">${'🏇'.repeat(Math.min(num, 3))}</span>
+                    <div class="flex flex-wrap items-center justify-center gap-0.5 max-w-[120px] min-h-[48px] mb-2">
+                        ${horseIcons}
+                    </div>
                     <span class="text-3xl font-western font-bold">${num}</span>
                     <span class="text-xs font-semibold uppercase tracking-wider">Players</span>
                 `;
@@ -379,7 +402,6 @@
 
         function confirmPlayerCount() {
             playSound('click');
-            // Initialize player default configs
             playersData = [];
             for (let i = 0; i < selectedPlayerCount; i++) {
                 playersData.push({
@@ -509,12 +531,10 @@
 
         function validateAndStartRace() {
             playSound('click');
-            // Ensure unique colors
             const chosenColors = playersData.map(p => p.colorIdx);
             const hasDuplicates = new Set(chosenColors).size !== chosenColors.length;
 
             if (hasDuplicates) {
-                // Auto assign unique colors if conflict exists
                 const available = [0, 1, 2, 3, 4, 5, 6, 7];
                 playersData.forEach((p) => {
                     const idx = available.shift();
@@ -522,44 +542,89 @@
                 });
             }
 
-            // Move to Race step
             document.getElementById('step-setup').classList.add('hidden');
             document.getElementById('step-race').classList.remove('hidden');
 
             setupRaceCanvasAndHorses();
         }
 
+        const TOP_GRANDSTAND_HEIGHT = 65;
+
         function setupRaceCanvasAndHorses() {
             canvas = document.getElementById('race-canvas');
             ctx = canvas.getContext('2d');
 
-            // Responsive sizing based on track lanes
-            const laneHeight = 65;
+            const laneHeight = 85;
             const trackPadding = 40;
-            canvas.width = 900;
-            canvas.height = (playersData.length * laneHeight) + trackPadding;
+            canvas.width = 1000;
+            canvas.height = TOP_GRANDSTAND_HEIGHT + (playersData.length * laneHeight) + trackPadding;
 
-            // Initialize horse states with paced target speeds (guaranteeing min 7-8s race duration)
             horsesState = playersData.map((p, idx) => ({
                 id: p.id,
                 playerIndex: idx,
                 colorInfo: AVAILABLE_COLORS[p.colorIdx],
+                coatStyle: EQUINE_COATS[idx % EQUINE_COATS.length],
                 wager: p.wager,
-                x: 40,
-                y: trackPadding / 2 + (idx * laneHeight) + (laneHeight / 2),
-                speed: 1.0 + Math.random() * 0.4,
-                targetSpeed: 1.0 + Math.random() * 0.6,
+                x: 65,
+                y: TOP_GRANDSTAND_HEIGHT + (trackPadding / 2) + (idx * laneHeight) + 35,
+                speed: 0.7 + Math.random() * 0.2,
+                targetSpeed: 0.7 + Math.random() * 0.3,
+                boostCooldown: 0,
+                stamina: 100,
                 finished: false,
                 finishTime: 0,
                 rank: 0,
-                legAngle: 0
+                legAngle: Math.random() * Math.PI * 2
             }));
 
             dustParticles = [];
             finishOrder = [];
             raceState = 'COUNTDOWN';
 
+            renderWhipControls();
             startRaceCountdown();
+        }
+
+        function renderWhipControls() {
+            const container = document.getElementById('whip-controls-container');
+            container.innerHTML = '';
+
+            horsesState.forEach((h) => {
+                const btnCard = document.createElement('div');
+                btnCard.className = 'flex flex-col items-center bg-gray-900/80 p-2.5 rounded-xl border border-gray-800';
+                btnCard.innerHTML = `
+                    <div class="flex items-center gap-1.5 mb-1.5">
+                        <span class="w-3 h-3 rounded-full" style="background-color: ${h.colorInfo.hex}"></span>
+                        <span class="text-xs font-bold text-white">P${h.id}</span>
+                    </div>
+                    <button 
+                        id="whip-btn-${h.id}" 
+                        onclick="triggerHorseWhip(${h.id})" 
+                        class="w-full py-2 px-3 rounded-lg bg-amber-600 hover:bg-amber-500 text-black font-extrabold text-xs shadow transition active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-1"
+                    >
+                        <span>💥</span> WHIP
+                    </button>
+                    <!-- Cooldown Bar -->
+                    <div class="w-full bg-gray-800 rounded-full h-1.5 mt-2 overflow-hidden">
+                        <div id="whip-cd-${h.id}" class="bg-amber-400 h-full w-full transition-all duration-75"></div>
+                    </div>
+                `;
+                container.appendChild(btnCard);
+            });
+        }
+
+        function triggerHorseWhip(playerId) {
+            const horse = horsesState.find(h => h.id === playerId);
+            if (!horse || horse.finished || horse.boostCooldown > 0 || raceState !== 'RUNNING') return;
+
+            playSound('whip');
+            horse.speed += 0.55; // Balanced speed burst
+            horse.boostCooldown = 90; // Frames cooldown
+
+            // Visual feedback
+            const btn = document.getElementById(`whip-btn-${playerId}`);
+            if (btn) btn.classList.add('animate-pulse-fast');
+            setTimeout(() => btn?.classList.remove('animate-pulse-fast'), 300);
         }
 
         function startRaceCountdown() {
@@ -606,37 +671,47 @@
         function updateRaceState() {
             if (raceState !== 'RUNNING') return;
 
-            const finishLineX = canvas.width - 80;
+            const finishLineX = canvas.width - 90;
             let allFinished = true;
 
             horsesState.forEach((h) => {
                 if (!h.finished) {
                     allFinished = false;
 
-                    // Continuously recalculate random target speeds during the race (paced for min 7-8s duration)
-                    if (Math.random() < 0.05) {
-                        h.targetSpeed = 0.85 + Math.random() * 0.85;
+                    // Reduce whip cooldown
+                    if (h.boostCooldown > 0) {
+                        h.boostCooldown--;
+                        const cdBar = document.getElementById(`whip-cd-${h.id}`);
+                        if (cdBar) {
+                            const pct = 100 - ((h.boostCooldown / 90) * 100);
+                            cdBar.style.width = `${pct}%`;
+                        }
                     }
 
-                    // Smoothly transition current speed towards the target speed
-                    h.speed += (h.targetSpeed - h.speed) * 0.04;
+                    // Dynamically vary natural pace
+                    if (Math.random() < 0.04) {
+                        h.targetSpeed = 0.65 + Math.random() * 0.55;
+                    }
 
-                    // Add per-frame subtle random speed noise and clamp maximum speed to guarantee at least 7.5s race
-                    const jitter = (Math.random() - 0.5) * 0.2;
-                    const effectiveSpeed = Math.max(0.5, Math.min(1.72, h.speed + jitter));
+                    // Smooth transition to target pace
+                    h.speed += (h.targetSpeed - h.speed) * 0.03;
+
+                    // Clamp velocity to guarantee at least 7.5 - 8.0 seconds minimum duration
+                    const effectiveSpeed = Math.max(0.5, Math.min(1.75, h.speed));
 
                     h.x += effectiveSpeed;
-                    h.legAngle += effectiveSpeed * 0.25;
+                    h.legAngle += effectiveSpeed * 0.32;
 
-                    // Spawn dust particles behind running horse
-                    if (Math.random() > 0.4) {
+                    // Spawn dust particles and turf dirt specks behind hooves
+                    if (Math.random() > 0.3) {
                         dustParticles.push({
-                            x: h.x - 25,
-                            y: h.y + 12 + (Math.random() * 6 - 3),
-                            vx: -(Math.random() * 2 + 1),
-                            vy: (Math.random() - 0.5) * 1.5,
+                            x: h.x - 30,
+                            y: h.y + 14 + (Math.random() * 6 - 3),
+                            vx: -(Math.random() * 2.5 + 1),
+                            vy: (Math.random() - 0.5) * 1.8,
+                            size: Math.random() * 3.5 + 2,
                             life: 1.0,
-                            color: '#8d6e63'
+                            color: Math.random() > 0.5 ? '#734c29' : '#3d2511'
                         });
                     }
 
@@ -659,7 +734,7 @@
                 const p = dustParticles[i];
                 p.x += p.vx;
                 p.y += p.vy;
-                p.life -= 0.04;
+                p.life -= 0.035;
                 if (p.life <= 0) {
                     dustParticles.splice(i, 1);
                 }
@@ -672,144 +747,475 @@
             }
         }
 
-        function drawTrackCanvas() {
-            const laneHeight = 65;
-            const finishLineX = canvas.width - 80;
+        function drawAudienceGrandstand() {
+            const width = canvas.width;
+            const h = TOP_GRANDSTAND_HEIGHT;
 
-            // 1. Draw Turf Grass Background
-            ctx.fillStyle = '#23471f';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Bleacher background structure
+            ctx.fillStyle = '#2b1b17';
+            ctx.fillRect(0, 0, width, h);
 
-            // Striped turf pattern
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-            for (let x = 0; x < canvas.width; x += 40) {
-                ctx.fillRect(x, 0, 20, canvas.height);
+            // Bleacher tier rows
+            ctx.fillStyle = '#3a251e';
+            ctx.fillRect(0, 0, width, 18);
+            ctx.fillStyle = '#482f26';
+            ctx.fillRect(0, 18, width, 20);
+            ctx.fillStyle = '#573a2f';
+            ctx.fillRect(0, 38, width, 22);
+
+            const time = Date.now() * 0.005;
+            const isRacing = raceState === 'RUNNING';
+
+            // Audience spectator rows configuration
+            const rows = [
+                { y: 12, count: 48, scale: 0.7 },
+                { y: 30, count: 45, scale: 0.85 },
+                { y: 50, count: 42, scale: 1.0 }
+            ];
+
+            const audienceColors = ['#e63946', '#f1faee', '#a8dadc', '#457b9d', '#1d3557', '#e9c46a', '#f4a261', '#e76f51', '#9b5de5', '#f15bb5', '#00f5d4'];
+            const hatColors = ['#3d2616', '#cba135', '#1a1a1a', '#e63946', '#457b9d', '#ffffff'];
+
+            rows.forEach((row, rIdx) => {
+                const spacing = width / row.count;
+                for (let i = 0; i < row.count; i++) {
+                    const specX = i * spacing + (spacing / 2) + ((rIdx % 2) * 8);
+                    
+                    // Cheering bounce animation during race
+                    let bounceY = 0;
+                    if (isRacing) {
+                        bounceY = Math.sin(time * 3 + i * 0.7 + rIdx) * 2.5;
+                        if (Math.sin(time * 5 + i) > 0.6) bounceY -= 2;
+                    }
+
+                    const specY = row.y + bounceY;
+                    const cIdx = (i * 7 + rIdx * 13) % audienceColors.length;
+                    const hIdx = (i * 3 + rIdx * 5) % hatColors.length;
+
+                    // Shirt / Torso
+                    ctx.fillStyle = audienceColors[cIdx];
+                    ctx.beginPath();
+                    ctx.arc(specX, specY + 4, 5 * row.scale, Math.PI, 0, false);
+                    ctx.fill();
+
+                    // Head
+                    ctx.fillStyle = '#f3c699';
+                    ctx.beginPath();
+                    ctx.arc(specX, specY - 2, 3.5 * row.scale, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Cowboy Hats & Caps
+                    if (i % 2 === 0) {
+                        ctx.fillStyle = hatColors[hIdx];
+                        ctx.beginPath();
+                        ctx.ellipse(specX, specY - 4, 6 * row.scale, 2 * row.scale, 0, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.fillRect(specX - 3 * row.scale, specY - 8 * row.scale, 6 * row.scale, 4 * row.scale);
+                    } else if (i % 3 === 0 && isRacing) {
+                        // Cheering flags & arms
+                        ctx.strokeStyle = '#f3c699';
+                        ctx.lineWidth = 1.5 * row.scale;
+                        ctx.beginPath();
+                        ctx.moveTo(specX + 2, specY);
+                        ctx.lineTo(specX + 5, specY - 8 + bounceY);
+                        ctx.stroke();
+
+                        ctx.fillStyle = audienceColors[(cIdx + 2) % audienceColors.length];
+                        ctx.fillRect(specX + 5, specY - 11 + bounceY, 5 * row.scale, 3.5 * row.scale);
+                    }
+                }
+            });
+
+            // Front Railing & Bunting
+            ctx.fillStyle = '#1e110d';
+            ctx.fillRect(0, h - 5, width, 5);
+
+            for (let bx = 0; bx < width; bx += 30) {
+                const flagCol = audienceColors[(bx / 30) % audienceColors.length];
+                ctx.fillStyle = flagCol;
+                ctx.beginPath();
+                ctx.moveTo(bx, h - 5);
+                ctx.lineTo(bx + 15, h + 8);
+                ctx.lineTo(bx + 30, h - 5);
+                ctx.closePath();
+                ctx.fill();
             }
 
-            // 2. Draw Track Lanes
+            drawFenceRail(0, h + 6);
+        }
+
+        function drawTrackCanvas() {
+            const laneHeight = 85;
+            const finishLineX = canvas.width - 90;
+            const startY = TOP_GRANDSTAND_HEIGHT;
+
+            // 1. Turf Grass Outer Background
+            ctx.fillStyle = '#1e3e1b';
+            ctx.fillRect(0, startY, canvas.width, canvas.height - startY);
+
+            // Striped grass pattern
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            for (let x = 0; x < canvas.width; x += 50) {
+                ctx.fillRect(x, startY, 25, canvas.height - startY);
+            }
+
+            // Draw Audience Grandstands at top
+            drawAudienceGrandstand();
+
+            // Bottom Railing Fence
+            drawFenceRail(0, canvas.height - 18);
+
+            // 2. Draw Track Dirt Lanes
             horsesState.forEach((h, idx) => {
-                const laneY = (idx * laneHeight) + 20;
+                const laneY = startY + (idx * laneHeight) + 20;
 
                 // Dirt track surface
                 ctx.fillStyle = '#4a2e1b';
-                ctx.fillRect(20, laneY, canvas.width - 40, laneHeight - 6);
+                ctx.fillRect(20, laneY, canvas.width - 40, laneHeight - 8);
+
+                // Texture specks on dirt
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+                for (let sx = 30; sx < canvas.width - 40; sx += 60) {
+                    ctx.fillRect(sx + (idx * 15 % 30), laneY + 12, 12, 4);
+                }
 
                 // Lane border white lines
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-                ctx.setLineDash([10, 10]);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.setLineDash([12, 12]);
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(20, laneY + laneHeight - 6);
-                ctx.lineTo(canvas.width - 20, laneY + laneHeight - 6);
+                ctx.moveTo(20, laneY + laneHeight - 8);
+                ctx.lineTo(canvas.width - 20, laneY + laneHeight - 8);
                 ctx.stroke();
                 ctx.setLineDash([]);
             });
 
-            // 3. Draw Start & Finish Line
-            // Finish line checkered board
-            const squareSize = 8;
-            for (let y = 15; y < canvas.height - 15; y += squareSize) {
+            // 3. Draw Checkered Finish Line Banner
+            const squareSize = 10;
+            const finishTop = startY + 10;
+            const finishBottom = canvas.height - 20;
+            for (let y = finishTop; y < finishBottom; y += squareSize) {
                 for (let col = 0; col < 2; col++) {
-                    ctx.fillStyle = ((y / squareSize + col) % 2 === 0) ? '#ffffff' : '#000000';
+                    ctx.fillStyle = ((Math.floor(y / squareSize) + col) % 2 === 0) ? '#ffffff' : '#111111';
                     ctx.fillRect(finishLineX + (col * squareSize), y, squareSize, squareSize);
                 }
             }
 
+            // Finish Line Post
+            ctx.fillStyle = '#ffd700';
+            ctx.fillRect(finishLineX - 3, finishTop, 6, finishBottom - finishTop);
+
             // 4. Draw Dust Particles
             dustParticles.forEach(p => {
-                ctx.fillStyle = `rgba(161, 136, 127, ${p.life})`;
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = Math.max(0, p.life);
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, Math.random() * 3 + 2, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fill();
+                ctx.globalAlpha = 1.0;
             });
 
             // 5. Draw Horses & Jockeys
             horsesState.forEach(h => {
-                drawHorseSprite(ctx, h.x, h.y, h.colorInfo.hex, h.legAngle, h.id);
+                drawHorseSprite(ctx, h.x, h.y, h.colorInfo.hex, h.legAngle, h.id, h.coatStyle);
             });
         }
 
-        function drawHorseSprite(ctx, x, y, colorHex, legAngle, playerId) {
-            ctx.save();
-            ctx.translate(x, y);
+        function drawFenceRail(x, y) {
+            ctx.fillStyle = '#d4a373';
+            ctx.fillRect(x, y, canvas.width, 6);
+            ctx.fillStyle = '#8c5e34';
+            for (let px = 20; px < canvas.width; px += 40) {
+                ctx.fillRect(px, y - 4, 6, 14);
+            }
+        }
 
-            // Shadow
-            ctx.fillStyle = 'rgba(0,0,0,0.3)';
+        function drawHorseSprite(ctx, x, y, jockeyHex, legAngle, playerId, coat) {
+            ctx.save();
+            
+            // Body vertical bounce & neck movement during gallop stride
+            const bodyBob = -Math.abs(Math.sin(legAngle)) * 5;
+            const neckSway = Math.sin(legAngle) * 0.08;
+            
+            ctx.translate(x, y + bodyBob);
+            
+            // 1. Ground Shadow
+            ctx.save();
+            ctx.translate(0, -bodyBob + 18);
+            ctx.fillStyle = 'rgba(0,0,0,0.35)';
             ctx.beginPath();
-            ctx.ellipse(0, 15, 22, 6, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 0, 32, 8, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // Kinematic Leg Helper Function
+            function drawLeg(startX, startY, phase, isFront, isFar) {
+                ctx.save();
+                ctx.strokeStyle = isFar ? adjustColor(coat.body, -35) : coat.body;
+                ctx.lineWidth = 4.5;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                const swing = Math.sin(phase);
+                const bend = Math.max(0, Math.cos(phase));
+
+                let hipAngle, kneeAngle;
+                if (isFront) {
+                    hipAngle = swing * 0.55 + 0.1;
+                    kneeAngle = -bend * 0.8;
+                } else {
+                    hipAngle = swing * 0.6 - 0.15;
+                    kneeAngle = bend * 0.7;
+                }
+
+                const upperLen = 14;
+                const lowerLen = 14;
+
+                const kx = startX + Math.sin(hipAngle) * upperLen;
+                const ky = startY + Math.cos(hipAngle) * upperLen;
+
+                const hx = kx + Math.sin(hipAngle + kneeAngle) * lowerLen;
+                const hy = ky + Math.cos(hipAngle + kneeAngle) * lowerLen;
+
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(kx, ky);
+                ctx.lineTo(hx, hy);
+                ctx.stroke();
+
+                // Hoof
+                ctx.fillStyle = coat.hoof;
+                ctx.beginPath();
+                ctx.arc(hx, hy + 1, 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+
+            // Phase offsets for realistic full 4-beat rotary gallop gait
+            const farHindPhase = legAngle + 0.4;
+            const nearHindPhase = legAngle;
+            const farFrontPhase = legAngle + 2.5;
+            const nearFrontPhase = legAngle + 2.1;
+
+            // FAR LEGS (Background legs, darkened for depth)
+            drawLeg(-18, 5, farHindPhase, false, true);
+            drawLeg(16, 5, farFrontPhase, true, true);
+
+            // TAIL (Flowing dynamically backwards)
+            ctx.save();
+            ctx.strokeStyle = coat.mane;
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(-26, -2);
+            const tailWiggle = Math.sin(legAngle * 1.5) * 6;
+            ctx.quadraticCurveTo(-36, -2 + tailWiggle, -44, 10 + tailWiggle);
+            ctx.stroke();
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(-25, -4);
+            ctx.quadraticCurveTo(-34, -8 + tailWiggle, -42, 2 + tailWiggle);
+            ctx.stroke();
+            ctx.restore();
+
+            // HORSE TORSO & HINDQUARTERS
+            // Rump / Flank
+            ctx.fillStyle = coat.body;
+            ctx.beginPath();
+            ctx.arc(-16, -3, 14, 0, Math.PI * 2);
             ctx.fill();
 
-            // Legs Animation
-            const legSwing1 = Math.sin(legAngle) * 12;
-            const legSwing2 = Math.sin(legAngle + Math.PI) * 12;
-
-            ctx.strokeStyle = '#3e2723';
-            ctx.lineWidth = 4;
-            ctx.lineCap = 'round';
-
-            // Back Legs
+            // Barrel / Main Torso
             ctx.beginPath();
-            ctx.moveTo(-12, 5);
-            ctx.lineTo(-12 + legSwing1, 18);
-            ctx.moveTo(-6, 5);
-            ctx.lineTo(-6 + legSwing2, 18);
-            // Front Legs
-            ctx.moveTo(10, 5);
-            ctx.lineTo(10 + legSwing2, 18);
-            ctx.moveTo(16, 5);
-            ctx.lineTo(16 + legSwing1, 18);
+            ctx.ellipse(0, 0, 22, 12, -0.05, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Body Muscle Highlight
+            ctx.fillStyle = coat.highlight;
+            ctx.beginPath();
+            ctx.ellipse(-2, -3, 16, 7, -0.1, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Shoulder Muscle
+            ctx.fillStyle = coat.body;
+            ctx.beginPath();
+            ctx.arc(14, -2, 12, 0, Math.PI * 2);
+            ctx.fill();
+
+            // NEAR LEGS (Foreground legs)
+            drawLeg(-14, 5, nearHindPhase, false, false);
+            drawLeg(18, 5, nearFrontPhase, true, false);
+
+            // SADDLE & PLAYER SILK BLANKET
+            ctx.fillStyle = jockeyHex;
+            ctx.beginPath();
+            ctx.roundRect(-10, -12, 18, 12, 3);
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
             ctx.stroke();
 
-            // Horse Body
-            ctx.fillStyle = '#5d4037';
+            // Leather Saddle
+            ctx.fillStyle = '#2b1704';
             ctx.beginPath();
-            ctx.ellipse(0, 0, 20, 10, 0, 0, Math.PI * 2);
+            ctx.ellipse(-1, -12, 8, 4, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            // Jockey / Blanket (Player Color)
-            ctx.fillStyle = colorHex;
-            ctx.fillRect(-8, -10, 14, 8);
+            // DERBY JOCKEY (Crouched posture)
+            ctx.save();
+            ctx.translate(2, -13);
 
-            // Jockey torso
-            ctx.fillStyle = colorHex;
+            // Jockey Legs
+            ctx.strokeStyle = '#1d1d1d';
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.arc(-2, -12, 6, 0, Math.PI * 2);
+            ctx.moveTo(-2, -2);
+            ctx.lineTo(4, 6);
+            ctx.lineTo(-2, 10);
+            ctx.stroke();
+
+            // Jockey Torso (Player Silk Color)
+            ctx.fillStyle = jockeyHex;
+            ctx.beginPath();
+            ctx.ellipse(2, -8, 8, 5, -0.6, 0, Math.PI * 2);
             ctx.fill();
 
-            // Jockey Head / Helmet
-            ctx.fillStyle = '#111';
+            // Jockey Arms
+            ctx.strokeStyle = jockeyHex;
+            ctx.lineWidth = 3.5;
             ctx.beginPath();
-            ctx.arc(0, -17, 4, 0, Math.PI * 2);
+            ctx.moveTo(6, -9);
+            ctx.lineTo(14, -5);
+            ctx.stroke();
+
+            // Jockey Helmet & Head
+            ctx.fillStyle = jockeyHex;
+            ctx.beginPath();
+            ctx.arc(8, -15, 5.5, 0, Math.PI * 2);
             ctx.fill();
 
-            // Neck & Head
-            ctx.fillStyle = '#5d4037';
+            // Helmet Visor & Goggles
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(10, -16, 5, 2.5);
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.moveTo(12, -4);
-            ctx.lineTo(22, -14);
-            ctx.lineTo(26, -8);
-            ctx.lineTo(18, 4);
+            ctx.moveTo(4, -15);
+            ctx.lineTo(12, -15);
+            ctx.stroke();
+
+            ctx.restore(); // End Jockey
+
+            // NECK & HEAD OF HORSE
+            ctx.save();
+            ctx.rotate(neckSway);
+
+            // Neck
+            ctx.fillStyle = coat.body;
+            ctx.beginPath();
+            ctx.moveTo(10, -6);
+            ctx.quadraticCurveTo(20, -18, 28, -26);
+            ctx.lineTo(34, -20);
+            ctx.quadraticCurveTo(24, -8, 20, 2);
             ctx.closePath();
             ctx.fill();
 
-            // Horse Snout
+            // Mane
+            ctx.fillStyle = coat.mane;
             ctx.beginPath();
-            ctx.arc(24, -11, 4, 0, Math.PI * 2);
+            ctx.moveTo(11, -8);
+            ctx.quadraticCurveTo(18, -22, 28, -28);
+            ctx.quadraticCurveTo(22, -20, 15, -6);
             ctx.fill();
 
-            // Player ID Badge above horse
-            ctx.fillStyle = '#111827';
-            ctx.fillRect(-12, -28, 24, 12);
-            ctx.strokeStyle = colorHex;
-            ctx.lineWidth = 1.5;
-            ctx.strokeRect(-12, -28, 24, 12);
+            // Head
+            ctx.fillStyle = coat.body;
+            ctx.beginPath();
+            ctx.moveTo(25, -28);
+            ctx.lineTo(39, -23);
+            ctx.lineTo(37, -15);
+            ctx.lineTo(24, -18);
+            ctx.closePath();
+            ctx.fill();
+
+            // Muzzle
+            ctx.fillStyle = coat.muzzle;
+            ctx.beginPath();
+            ctx.arc(37, -20, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Nostril
+            ctx.fillStyle = '#0a0503';
+            ctx.beginPath();
+            ctx.arc(38, -20, 1, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Eye
+            ctx.fillStyle = '#0d0d0d';
+            ctx.beginPath();
+            ctx.arc(29, -24, 1.8, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Ear
+            ctx.fillStyle = coat.body;
+            ctx.beginPath();
+            ctx.moveTo(25, -28);
+            ctx.lineTo(27, -35);
+            ctx.lineTo(30, -28);
+            ctx.closePath();
+            ctx.fill();
+
+            // Reins
+            ctx.strokeStyle = '#2b1704';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.moveTo(36, -19);
+            ctx.lineTo(27, -27);
+            ctx.moveTo(34, -22);
+            ctx.lineTo(35, -17);
+            ctx.moveTo(36, -19);
+            ctx.quadraticCurveTo(28, -12, 16, -18);
+            ctx.stroke();
+
+            ctx.restore(); // End Head
+
+            // PLAYER ID BADGE (Floating over horse)
+            ctx.save();
+            ctx.translate(0, -38);
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+            ctx.beginPath();
+            ctx.roundRect(-16, -10, 32, 18, 6);
+            ctx.fill();
+            ctx.strokeStyle = jockeyHex;
+            ctx.lineWidth = 2;
+            ctx.stroke();
 
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 9px sans-serif';
+            ctx.font = 'bold 11px Inter, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(`P${playerId}`, 0, -19);
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`P${playerId}`, 0, -1);
+            ctx.restore();
 
             ctx.restore();
+        }
+
+        // Color adjustment utility for depth shading
+        function adjustColor(hex, amount) {
+            let usePound = false;
+            if (hex[0] === "#") {
+                hex = hex.slice(1);
+                usePound = true;
+            }
+            let num = parseInt(hex, 16);
+            let r = (num >> 16) + amount;
+            if (r > 255) r = 255; else if (r < 0) r = 0;
+            let b = ((num >> 8) & 0x00FF) + amount;
+            if (b > 255) b = 255; else if (b < 0) b = 0;
+            let g = (num & 0x0000FF) + amount;
+            if (g > 255) g = 255; else if (g < 0) g = 0;
+            return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16).padStart(6, '0');
         }
 
         function showRaceResults() {
