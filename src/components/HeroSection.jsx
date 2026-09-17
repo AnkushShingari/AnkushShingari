@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   FaEnvelope,
-  FaPhone,
   FaGithub,
   FaLocationDot,
   FaXmark,
@@ -14,24 +13,30 @@ import { IoCodeSlashOutline } from 'react-icons/io5';
 import developerData from '../data/developer.json';
 
 const galleryImages = [
-  { id: 1, src: "/media/Ankush-Kumar-Avatar.png", title: "Avatar Illustration" },
-  { id: 2, src: "/media/AnkushProfilePhoto.jpeg", title: "Profile Image View" }
+  {
+    id: 1,
+    src: '/media/Ankush-Kumar-Avatar.png',
+    title: 'Avatar Illustration'
+  },
+  {
+    id: 2,
+    src: '/media/AnkushProfilePhoto.jpeg',
+    title: 'Profile Image View'
+  }
 ];
 
-// Helper Component: Handles individual image load state smoothly
+// Helper Component
 function ProgressiveImage({ src, alt }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div className="relative w-full h-full">
-      {/* Loading Skeleton */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-[#161b22] animate-pulse flex items-center justify-center">
           <div className="w-8 h-8 border-2 border-[#2dd4bf] border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
-      {/* Actual Image */}
       <img
         src={src}
         alt={alt}
@@ -52,20 +57,50 @@ export default function HeroSection() {
 
   const { personalInfo, technicalSkills } = developerData;
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(JSON.stringify(developerData, null, 2));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  /*
+   * Automatically collect skills from all categories.
+   * No category names are hardcoded here.
+   */
+  const allSkills = Object.values(technicalSkills || {}).flat();
+
+  /*
+   * Show the first 3 skills in the developer.json preview.
+   * If you add/reorder skills in JSON, this updates automatically.
+   */
+  const techStack = allSkills.slice(0, 3);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        JSON.stringify(developerData, null, 2)
+      );
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error('Failed to copy JSON:', error);
+    }
   };
 
   const handleNextImage = (e) => {
     e.stopPropagation();
-    setCurrentImgIndex((prev) => (prev + 1) % galleryImages.length);
+
+    setCurrentImgIndex(
+      (prev) => (prev + 1) % galleryImages.length
+    );
   };
 
   const handlePrevImage = (e) => {
     e.stopPropagation();
-    setCurrentImgIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+
+    setCurrentImgIndex(
+      (prev) =>
+        (prev - 1 + galleryImages.length) %
+        galleryImages.length
+    );
   };
 
   const handleAvatarClick = (e) => {
@@ -77,8 +112,9 @@ export default function HeroSection() {
     <div className="bg-[#0b0f17] text-white min-h-[90vh] flex items-center justify-center py-8 px-4 md:py-16 md:px-12 relative border-b border-gray-800 font-sans">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Left Column */}
+        {/* ================= LEFT COLUMN ================= */}
         <div className="space-y-6">
+
           <div className="text-xs font-mono">
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0d2a2a] text-[#2dd4bf] border border-[#1b4d4f]">
               <span className="w-2 h-2 rounded-full bg-[#2dd4bf] animate-pulse"></span>
@@ -90,6 +126,7 @@ export default function HeroSection() {
             <h2 className="text-[#2dd4bf] font-mono font-medium tracking-wide text-sm mb-1 uppercase">
               {personalInfo?.name}
             </h2>
+
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
               {personalInfo?.title}
             </h1>
@@ -100,93 +137,230 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-3 font-mono text-xs text-gray-300">
-            <a href={`mailto:${personalInfo?.email}`} className="flex items-center gap-2 bg-[#161b22] border border-gray-800 hover:border-gray-700 px-3 py-2 rounded-md transition hover:text-white">
-              <FaEnvelope className="text-[#2dd4bf] text-sm" />
-              <span>{personalInfo?.email}</span>
-            </a>
-            <a href={`https://github.com/${personalInfo?.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#161b22] border border-gray-800 hover:border-gray-700 px-3 py-2 rounded-md transition hover:text-white">
-              <FaGithub className="text-[#2dd4bf] text-sm" />
-              <span>{personalInfo?.github}</span>
-            </a>
-            <div className="flex items-center gap-2 bg-[#161b22] border border-gray-800 px-3 py-2 rounded-md">
-              <FaLocationDot className="text-[#2dd4bf] text-sm" />
-              <span>{personalInfo?.location}</span>
-            </div>
+
+            {/* Email */}
+            {personalInfo?.email && (
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="flex items-center gap-2 bg-[#161b22] border border-gray-800 hover:border-gray-700 px-3 py-2 rounded-md transition hover:text-white"
+              >
+                <FaEnvelope className="text-[#2dd4bf] text-sm" />
+                <span>{personalInfo.email}</span>
+              </a>
+            )}
+
+            {/* GitHub */}
+            {personalInfo?.github && (
+              <a
+                href={`https://github.com/${personalInfo.github}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 bg-[#161b22] border border-gray-800 hover:border-gray-700 px-3 py-2 rounded-md transition hover:text-white"
+              >
+                <FaGithub className="text-[#2dd4bf] text-sm" />
+                <span>{personalInfo.github}</span>
+              </a>
+            )}
+
+            {/* Location */}
+            {personalInfo?.location && (
+              <div className="flex items-center gap-2 bg-[#161b22] border border-gray-800 px-3 py-2 rounded-md">
+                <FaLocationDot className="text-[#2dd4bf] text-sm" />
+                <span>{personalInfo.location}</span>
+              </div>
+            )}
+
           </div>
         </div>
 
-        {/* Right Column */}
-        <div onClick={() => setIsJsonOpen(true)} className="bg-[#11161d] border border-gray-800 rounded-xl shadow-2xl hover:border-gray-700 transition cursor-pointer relative group flex flex-col justify-between">
+        {/* ================= RIGHT COLUMN ================= */}
+        <div
+          onClick={() => setIsJsonOpen(true)}
+          className="bg-[#11161d] border border-gray-800 rounded-xl shadow-2xl hover:border-gray-700 transition cursor-pointer relative group flex flex-col justify-between"
+        >
+
+          {/* Editor Header */}
           <div className="bg-[#161b22] px-3 md:px-4 py-3 flex items-center justify-between border-b border-gray-800 rounded-t-xl">
+
             <div className="flex gap-2">
               <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
               <span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
               <span className="w-3 h-3 rounded-full bg-[#27c93f]"></span>
             </div>
-            <span className="font-mono text-xs text-gray-400">developer.json</span>
-            <span className="font-mono text-xs text-gray-500 group-hover:text-[#2dd4bf] transition flex items-center gap-1">
-              <IoCodeSlashOutline className="text-sm" /> Click to expand
+
+            <span className="font-mono text-xs text-gray-400">
+              developer.json
             </span>
+
+            <span className="font-mono text-xs text-gray-500 group-hover:text-[#2dd4bf] transition flex items-center gap-1">
+              <IoCodeSlashOutline className="text-sm" />
+              Click to expand
+            </span>
+
           </div>
 
+          {/* Code Preview */}
           <div className="p-3 md:p-6 font-mono text-xs md:text-sm leading-relaxed relative min-h-[320px] flex flex-col justify-between">
+
             <div className="space-y-1 text-gray-300 overflow-x-auto pb-32 sm:pb-36 md:pb-0 md:pr-40">
-              <p><span className="text-gray-500 mr-4">1</span><span className="text-[#38bdf8]">const</span> <span className="text-white">developer</span> = &#123;</p>
-              <p><span className="text-gray-500 mr-4">2</span>  <span className="text-gray-400">name:</span> <span className="text-[#a5d6ff]">"{personalInfo?.name}"</span>,</p>
-              <p><span className="text-gray-500 mr-4">3</span>  <span className="text-gray-400">role:</span> <span className="text-[#a5d6ff]">"{personalInfo?.title}"</span>,</p>
-              <p><span className="text-gray-500 mr-4">4</span>  <span className="text-gray-400">techStack:</span> [<span className="text-[#a5d6ff]">"{technicalSkills?.backend?.[0]}"</span>, <span className="text-[#a5d6ff]">"{technicalSkills?.cms?.[0]}"</span>, <span className="text-[#a5d6ff]">"{technicalSkills?.frontend?.[6]}"</span>],</p>
-              <p><span className="text-gray-500 mr-4">5</span>  <span className="text-gray-400">location:</span> <span className="text-[#a5d6ff]">"{personalInfo?.location}"</span></p>
-              <p><span className="text-gray-500 mr-4">6</span>&#125;;</p>
+
+              <p>
+                <span className="text-gray-500 mr-4">1</span>
+                <span className="text-[#38bdf8]">const</span>{' '}
+                <span className="text-white">developer</span> = &#123;
+              </p>
+
+              <p>
+                <span className="text-gray-500 mr-4">2</span>
+                <span className="text-gray-400">name:</span>{' '}
+                <span className="text-[#a5d6ff]">
+                  "{personalInfo?.name}"
+                </span>,
+              </p>
+
+              <p>
+                <span className="text-gray-500 mr-4">3</span>
+                <span className="text-gray-400">role:</span>{' '}
+                <span className="text-[#a5d6ff]">
+                  "{personalInfo?.title}"
+                </span>,
+              </p>
+
+              <p>
+                <span className="text-gray-500 mr-4">4</span>
+                <span className="text-gray-400">techStack:</span>{' '}
+                [
+                {techStack.map((skill, index) => (
+                  <span key={skill}>
+                    <span className="text-[#a5d6ff]">
+                      "{skill}"
+                    </span>
+                    {index < techStack.length - 1 && ', '}
+                  </span>
+                ))}
+                ],
+              </p>
+
+              <p>
+                <span className="text-gray-500 mr-4">5</span>
+                <span className="text-gray-400">location:</span>{' '}
+                <span className="text-[#a5d6ff]">
+                  "{personalInfo?.location}"
+                </span>
+              </p>
+
+              <p>
+                <span className="text-gray-500 mr-4">6</span>
+                &#125;;
+              </p>
+
             </div>
 
-            <div onClick={handleAvatarClick} title="Click to view image" className="absolute bottom-4 right-4 w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 border-2 border-[#2dd4bf]/50 rounded-full flex items-center justify-center p-1.5 bg-[#0b0f17]/80 backdrop-blur-md shadow-xl hover:border-[#2dd4bf] transition-transform duration-300 hover:scale-105 z-10">
-              <img src="/media/Ankush-Kumar-Avatar.png" alt={personalInfo?.name} className="w-full h-full object-cover rounded-full border border-[#2dd4bf]/30" />
+            {/* Avatar */}
+            <div
+              onClick={handleAvatarClick}
+              title="Click to view image"
+              className="absolute bottom-4 right-4 w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 border-2 border-[#2dd4bf]/50 rounded-full flex items-center justify-center p-1.5 bg-[#0b0f17]/80 backdrop-blur-md shadow-xl hover:border-[#2dd4bf] transition-transform duration-300 hover:scale-105 z-10"
+            >
+              <img
+                src="/media/Ankush-Kumar-Avatar.png"
+                alt={personalInfo?.name || 'Developer'}
+                className="w-full h-full object-cover rounded-full border border-[#2dd4bf]/30"
+              />
             </div>
+
           </div>
         </div>
 
       </div>
 
-      {/* JSON Modal */}
+      {/* ================= JSON MODAL ================= */}
       {isJsonOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
-          <div className="bg-[#11161d] border border-gray-800 rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl">
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50"
+          onClick={() => setIsJsonOpen(false)}
+        >
+          <div
+            className="bg-[#11161d] border border-gray-800 rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+
             <div className="bg-[#161b22] px-4 py-3 flex items-center justify-between border-b border-gray-800">
+
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
                 <span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
                 <span className="w-3 h-3 rounded-full bg-[#27c93f]"></span>
-                <span className="font-mono text-xs text-gray-400 ml-2">developer.json</span>
+
+                <span className="font-mono text-xs text-gray-400 ml-2">
+                  developer.json
+                </span>
               </div>
+
               <div className="flex items-center gap-2">
-                <button onClick={handleCopy} className="text-gray-400 hover:text-white p-1.5 rounded transition hover:bg-gray-800" title="Copy JSON">
-                  {copied ? <FaCheck className="text-green-400" /> : <FaRegCopy />}
+
+                <button
+                  onClick={handleCopy}
+                  className="text-gray-400 hover:text-white p-1.5 rounded transition hover:bg-gray-800"
+                  title="Copy JSON"
+                >
+                  {copied ? (
+                    <FaCheck className="text-green-400" />
+                  ) : (
+                    <FaRegCopy />
+                  )}
                 </button>
-                <button onClick={() => setIsJsonOpen(false)} className="text-gray-400 hover:text-white p-1.5 rounded transition hover:bg-gray-800">
+
+                <button
+                  onClick={() => setIsJsonOpen(false)}
+                  className="text-gray-400 hover:text-white p-1.5 rounded transition hover:bg-gray-800"
+                >
                   <FaXmark className="text-lg" />
                 </button>
+
               </div>
             </div>
+
             <div className="p-6 font-mono text-sm overflow-x-auto max-h-[70vh] bg-[#0d1117]">
-              <pre className="text-[#a5d6ff]"><code>{JSON.stringify(developerData, null, 2)}</code></pre>
+              <pre className="text-[#a5d6ff]">
+                <code>
+                  {JSON.stringify(developerData, null, 2)}
+                </code>
+              </pre>
             </div>
+
           </div>
         </div>
       )}
 
-      {/* Lightbox Modal */}
+      {/* ================= LIGHTBOX ================= */}
       {isLightboxOpen && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <button onClick={() => setIsLightboxOpen(false)} className="absolute top-6 right-6 text-gray-400 hover:text-white p-2 rounded-full bg-[#161b22] border border-gray-800 transition">
+        <div
+          className="fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 z-50 animate-in fade-in duration-200"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+
+          <button
+            onClick={() => setIsLightboxOpen(false)}
+            className="absolute top-6 right-6 text-gray-400 hover:text-white p-2 rounded-full bg-[#161b22] border border-gray-800 transition"
+          >
             <FaXmark className="text-xl" />
           </button>
 
-          <div className="relative max-w-lg w-full flex items-center justify-center">
-            <button onClick={handlePrevImage} className="absolute left-2 z-10 text-gray-300 hover:text-white p-3 rounded-full bg-[#161b22]/80 border border-gray-700 backdrop-blur-sm transition hover:scale-110">
+          <div
+            className="relative max-w-lg w-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <button
+              onClick={handlePrevImage}
+              className="absolute left-2 z-10 text-gray-300 hover:text-white p-3 rounded-full bg-[#161b22]/80 border border-gray-700 backdrop-blur-sm transition hover:scale-110"
+            >
               <FaChevronLeft className="text-lg" />
             </button>
 
             <div className="p-4 flex flex-col items-center">
+
               <div className="w-64 h-64 sm:w-80 sm:h-80 border-2 border-[#2dd4bf] rounded-full overflow-hidden shadow-2xl bg-[#0b0f17]">
                 <ProgressiveImage
                   key={galleryImages[currentImgIndex].src}
@@ -194,17 +368,25 @@ export default function HeroSection() {
                   alt={galleryImages[currentImgIndex].title}
                 />
               </div>
+
               <p className="mt-4 font-mono text-sm text-gray-400">
-                {galleryImages[currentImgIndex].title} ({currentImgIndex + 1} / {galleryImages.length})
+                {galleryImages[currentImgIndex].title}{' '}
+                ({currentImgIndex + 1} / {galleryImages.length})
               </p>
+
             </div>
 
-            <button onClick={handleNextImage} className="absolute right-2 z-10 text-gray-300 hover:text-white p-3 rounded-full bg-[#161b22]/80 border border-gray-700 backdrop-blur-sm transition hover:scale-110">
+            <button
+              onClick={handleNextImage}
+              className="absolute right-2 z-10 text-gray-300 hover:text-white p-3 rounded-full bg-[#161b22]/80 border border-gray-700 backdrop-blur-sm transition hover:scale-110"
+            >
               <FaChevronRight className="text-lg" />
             </button>
+
           </div>
         </div>
       )}
+
     </div>
   );
 }
