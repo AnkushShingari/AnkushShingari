@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaArrowUpRightFromSquare, FaExpand, FaCompress, FaPlay, FaMobileScreenButton } from 'react-icons/fa6';
 
 export default function PlayZoneSection({
@@ -26,12 +26,23 @@ export default function PlayZoneSection({
         }
     ]
 }) {
-    // Stores the ID of the currently active game (only 1 plays at a time)
     const [activeGameId, setActiveGameId] = useState(null);
     const [fullscreenGameId, setFullscreenGameId] = useState(null);
+    const [isMobileScreen, setIsMobileScreen] = useState(false);
 
     const containerRefs = useRef({});
     const iframeRefs = useRef({});
+
+    // Detect if current screen size is mobile (< 768px)
+    useEffect(() => {
+        const checkMobileScreen = () => {
+            setIsMobileScreen(window.innerWidth < 768);
+        };
+
+        checkMobileScreen();
+        window.addEventListener('resize', checkMobileScreen);
+        return () => window.removeEventListener('resize', checkMobileScreen);
+    }, []);
 
     // Handle Fullscreen Toggle
     const handleToggleFullscreen = (gameId) => {
@@ -66,7 +77,9 @@ export default function PlayZoneSection({
                 {games.map((game, index) => {
                     const isPlaying = activeGameId === game.id;
                     const isFullscreen = fullscreenGameId === game.id;
-                    const isMobileDisabled = game.mobile === 0;
+                    
+                    // Game is disabled ONLY IF it doesn't support mobile AND user is on a mobile device
+                    const isMobileDisabled = game.mobile === 0 && isMobileScreen;
 
                     return (
                         <div 
@@ -135,7 +148,7 @@ export default function PlayZoneSection({
                                 {/* Window Body & Iframe */}
                                 <div className="flex-1 w-full h-full bg-[#0b0f17] relative">
                                     {isMobileDisabled ? (
-                                        /* Display message when mobile: 0 */
+                                        /* Display message when game.mobile === 0 AND screen width < 768px */
                                         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-6 text-center bg-[#0b0f17]">
                                             <div className="w-16 h-16 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center border border-red-500/20 mb-4 shadow-lg shadow-red-500/5">
                                                 <FaMobileScreenButton className="text-2xl" />
