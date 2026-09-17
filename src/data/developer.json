@@ -2,7 +2,7 @@
   "personalInfo": {
     "name": "Ankush Kumar",
     "title": "Software Developer",
-    "summary": "Software Developer with hands-on experience in PHP, WordPress development, custom plugin development, frontend implementation, and API integration. Experienced in working on live client projects and building responsive, functional web solutions. Currently expanding expertise in React JS development to strengthen full-stack capabilities and deliver scalable web applications.",
+    "summary": "Software Developer with hands-on experience in PHP, React JS, WordPress development, custom plugin development, frontend implementation, and API integration. Experienced in working on live client projects and building responsive, functional web solutions. Skilled in developing modern web applications using React JS and PHP, with a focus on scalable, maintainable, and user-friendly solutions.",
     "email": "ankush.kumar1026@gmail.com",
     "location": "Yamunanagar, India",
     "github": "AnkushShingari",
@@ -61,7 +61,8 @@
         "Mathematics",
         "Physics"
       ]
-    },{
+    },
+    {
       "degree": "Senior Secondary",
       "institution": "Central Board of Secondary Education",
       "location": "India",
@@ -75,35 +76,36 @@
     }
   ],
   "technicalSkills": {
-    "frontend": [
+    "Frontend": [
       "HTML5",
       "CSS3",
       "JavaScript",
       "jQuery",
       "Bootstrap",
       "Tailwind CSS",
-      "React JS"
+      "React.js"
     ],
-    "backend": [
+    "Backend": [
       "PHP",
       "MySQL"
     ],
-    "cms": [
+    "CMS & Platforms": [
       "WordPress",
       "Shopify",
       "Webflow",
-      "GHL"
+      "GoHighLevel (GHL)"
     ],
-    "tools": [
+    "Development & Integration": [
+      "REST API Integration",
+      "WordPress Plugin Development",
+      "Custom Development",
+      "CRM Automation"
+    ],
+    "Tools & Version Control": [
+      "Git",
+      "GitHub",
       "Postman",
-      "VS Code",
-      "GitHub"
-    ],
-    "other": [
-      "API Integration",
-      "Plugin Development",
-      "Custom Coding",
-      "CRM Automations"
+      "VS Code"
     ]
   },
   "projects": [
@@ -115,7 +117,11 @@
         "Focused on reaction speed and color recognition logic.",
         "Implemented score tracking and responsive UI."
       ],
-      "techStack": ["HTML", "Tailwind CSS", "JavaScript"],
+      "techStack": [
+        "HTML",
+        "Tailwind CSS",
+        "JavaScript"
+      ],
       "githubRepo": "https://github.com/AnkushShingari/MatchMind",
       "liveDemo": "https://ankushshingari.github.io/MatchMind/"
     },
@@ -127,7 +133,12 @@
         "Built customization controls for text styling and animation export.",
         "Implemented using HTML, CSS, and JavaScript."
       ],
-      "techStack": ["HTML", "CSS", "JavaScript", "SVG"],
+      "techStack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "SVG"
+      ],
       "githubRepo": "https://github.com/AnkushShingari/Animated-SVG-Text-Generator",
       "liveDemo": "https://ankushshingari.github.io/Animated-SVG-Text-Generator/"
     }
