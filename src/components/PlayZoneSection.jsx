@@ -8,7 +8,7 @@ export default function PlayZoneSection({
             name: "Wild West Turf",
             description: "HTML5 Canvas & JavaScript arcade showdown.\nStake virtual chips with friends in rapid-fire strategy rounds.\nFeatures custom physics engine and real-time canvas rendering.",
             url: "/playzone/wild-west-turf/index.html",
-            mobile: 1
+            mobile: 0
         },
         {
             id: "matchmind-colour-match-challenge",
